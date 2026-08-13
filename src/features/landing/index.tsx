@@ -5,6 +5,7 @@ import { HowItWorks } from "@/shared/components/how-it-works";
 import { JsonLd } from "@/shared/components/json-ld";
 import { MobileBar, Navbar, type NavLink } from "@/shared/components/navbar";
 import { Pricing } from "@/shared/components/pricing";
+import { RotationCalculator } from "./components/rotation-calculator";
 import { Testimonials } from "@/shared/components/testimonials";
 import { testimonials } from "@/shared/data/testimonials";
 import { Authority } from "./components/authority";
@@ -31,6 +32,7 @@ export function LandingPage({ baseUrl }: { baseUrl: string }) {
         <Hero />
         <Pain />
         <TheMath />
+        <RotationCalculator />
         <HowItWorks />
         <WhatsIncluded />
         <Authority />
