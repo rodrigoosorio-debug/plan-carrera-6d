@@ -1,0 +1,66 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * 6D Consultoría — paleta de marca
+ * Morado profundo de fondo, dorado para las cifras, turquesa para acentos.
+ * La página es dark por defecto: no hay variante clara.
+ */
+:root {
+  --night: 259 61% 11%; /* #160B2E — fondo base */
+  --night-deep: 259 64% 7%; /* fondo de secciones hundidas */
+  --surface: 259 45% 16%; /* tarjetas y bloques elevados */
+  --line: 259 32% 24%; /* bordes y divisores */
+
+  --gold: 42 77% 60%; /* #E8B84B — cifras y botones */
+  --gold-bright: 42 88% 68%; /* hover del dorado */
+  --aqua: 177 69% 52%; /* #2ED9D0 — acentos */
+
+  --cream: 43 34% 95%; /* texto principal, tintado en cálido */
+  --muted: 259 14% 68%; /* texto secundario */
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-night text-cream font-sans antialiased;
+    /* Grano sutil: da textura al morado plano sin cargar una imagen. */
+    background-image: radial-gradient(
+      ellipse 80% 50% at 50% -10%,
+      hsl(var(--surface) / 0.6),
+      transparent
+    );
+    background-repeat: no-repeat;
+  }
+
+  /* Las cifras grandes se leen mejor con cifras tabulares y tracking cerrado. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.03em;
+  }
+
+  ::selection {
+    @apply bg-gold text-night;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-aqua ring-offset-2 ring-offset-night;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
