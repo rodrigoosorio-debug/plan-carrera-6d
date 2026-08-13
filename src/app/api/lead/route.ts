@@ -15,6 +15,36 @@ import { z } from "zod";
 
 const GHL_ENDPOINT = "https://services.leadconnectorhq.com/contacts/upsert";
 
+/**
+ * Campos personalizados del CRM, por id.
+ *
+ * Se usan ids y no claves de texto porque las claves que genera GHL pierden
+ * los acentos de forma impredecible ("Pérdida por rotación" acaba como
+ * `prdida_por_rotacin`), y un id no se puede malinterpretar.
+ *
+ * `cost` apunta al campo "Pérdida por rotación" que ya existía en el CRM.
+ * Los otros dos no existen todavía: en cuanto los crees, pega aquí sus ids y
+ * empiezan a llenarse solos. Mientras sean `null`, simplemente no se mandan.
+ */
+const CRM_FIELDS: Record<"cost" | "salary" | "departures", string | null> = {
+  cost: "WvPJpDs5pHvXKWhPHSl4", // "Pérdida por rotación" (numérico)
+  salary: null, // sueldo promedio mensual
+  departures: null, // bajas del último año
+};
+
+function buildCustomFields(lead: {
+  cost: number;
+  salary: number;
+  departures: number;
+}) {
+  return (Object.keys(CRM_FIELDS) as Array<keyof typeof CRM_FIELDS>)
+    .filter((name) => CRM_FIELDS[name] !== null)
+    .map((name) => ({
+      id: CRM_FIELDS[name] as string,
+      field_value: String(lead[name]),
+    }));
+}
+
 const leadSchema = z.object({
   name: z.string().trim().min(2, "Nombre demasiado corto").max(80),
   email: z.email("Correo inválido").max(120),
@@ -90,11 +120,7 @@ export async function POST(request: Request) {
     companyName: lead.company || undefined,
     source: "Landing — Calculadora de rotación",
     tags: ["calculadora-rotacion", "landing-b2b"],
-    customFields: [
-      { key: "costo_rotacion_anual", field_value: String(lead.cost) },
-      { key: "sueldo_promedio", field_value: String(lead.salary) },
-      { key: "bajas_ultimo_ano", field_value: String(lead.departures) },
-    ],
+    customFields: buildCustomFields(lead),
   };
 
   const send = (body: object) =>
