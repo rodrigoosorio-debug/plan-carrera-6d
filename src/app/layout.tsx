@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { baseUrl } from "@/shared/data/url";
 import "./globals.css";
 
@@ -59,7 +61,16 @@ export default function RootLayout({
        * Solo silencia diferencias de atributos EN ESTE elemento — cualquier
        * mismatch real dentro de la app se sigue reportando.
        */}
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        {children}
+        {/*
+         * Analytics y Speed Insights de Vercel. Van al final del body para que
+         * no compitan con el renderizado; el interruptor del panel de Vercel no
+         * hace nada por sí solo, hace falta que la app cargue estos scripts.
+         */}
+        <Analytics />
+        <SpeedInsights />
+      </body>
     </html>
   );
 }
