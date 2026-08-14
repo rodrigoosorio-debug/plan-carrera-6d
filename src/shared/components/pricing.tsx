@@ -28,7 +28,9 @@ const copy = {
       subtitle: "Incluye acompañamiento de arranque. Cupo mensual limitado.",
     },
     volumeNote:
-      "¿Más de 10 colaboradores? Escríbenos, tenemos condiciones por volumen.",
+      // El descuento por volumen está EN EVALUACIÓN: se invita a la charla sin
+      // prometer condiciones que aún no existen (regla del CLAUDE.md maestro).
+      "¿Vas a inscribir a 10 o más colaboradores? Escríbenos antes y lo armamos contigo.",
     upgradeNote:
       "¿Empezaste en un nivel y quieres subir? Pagas solo la diferencia y tu avance se respeta.",
   },

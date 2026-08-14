@@ -332,8 +332,8 @@ _Incluye acompañamiento de arranque. Cupo mensual limitado._
 
 **Nota bajo el bloque:**
 
-> ¿Más de 10 colaboradores? Escríbenos, tenemos condiciones por volumen.
-> _(No se publica el porcentaje hasta cerrarlo.)_
+> ¿Vas a inscribir a 10 o más colaboradores? Escríbenos antes y lo armamos contigo.
+> _(El descuento por volumen está en evaluación: se invita a la charla sin prometer condiciones.)_
 
 **Micro-copy de escalabilidad (va bajo el bloque A):**
 
