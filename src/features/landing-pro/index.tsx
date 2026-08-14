@@ -29,6 +29,7 @@ export function LandingPro({ baseUrl }: { baseUrl: string }) {
   return (
     <>
       <JsonLd baseUrl={baseUrl} path="/profesionales" faq={faq} />
+      <MetaPixel contentName="landing-profesionales" />
       <Navbar links={links} />
       <main>
         <Hero />
