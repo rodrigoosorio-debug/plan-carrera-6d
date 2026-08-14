@@ -78,19 +78,26 @@ export function Pricing({ audience }: { audience: Audience }) {
           ))}
         </div>
 
+        {site.bonusItems.length > 0 && (
+          <div className="mt-6 rounded-2xl border border-gold/40 bg-gold/[0.06] p-6 sm:p-7">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-gold">
+              Bono de primera generación · hasta el{" "}
+              {site.bonusDeadline ?? <Pending>fecha del bono</Pending>}
+            </p>
+            <ul className="mt-4 space-y-2.5">
+              {site.bonusItems.map((item) => (
+                <li key={item} className="flex gap-3 text-sm leading-relaxed">
+                  <span aria-hidden className="mt-0.5 text-gold">
+                    ✓
+                  </span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="mt-6 space-y-2 text-sm text-muted">
-          <p>
-            {site.bonusDescription ? (
-              <>
-                {site.bonusDescription} hasta el{" "}
-                {site.bonusDeadline ?? <Pending>fecha del bono</Pending>}.
-              </>
-            ) : (
-              <Pending>
-                qué incluye el bono de primera generación y hasta qué fecha
-              </Pending>
-            )}
-          </p>
           <p>{text.upgradeNote}</p>
         </div>
       </div>

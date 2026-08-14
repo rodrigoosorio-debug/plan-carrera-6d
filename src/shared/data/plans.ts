@@ -146,3 +146,15 @@ export const plansByChannel = {
   checkout: plans.filter((p) => p.channel === "checkout"),
   whatsapp: plans.filter((p) => p.channel === "whatsapp"),
 };
+
+/**
+ * Precio del nivel al que apunta una URL de pago, para el evento
+ * InitiateCheckout del pixel. `null` si la URL no es de checkout.
+ */
+export function checkoutAmountFor(href: string): number | null {
+  for (const plan of plans) {
+    const url = checkoutUrls[plan.id];
+    if (url && href.includes(url)) return plan.price;
+  }
+  return null;
+}

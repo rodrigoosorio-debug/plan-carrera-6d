@@ -3,6 +3,7 @@ import { Footer } from "@/shared/components/footer";
 import { Guarantee } from "@/shared/components/guarantee";
 import { HowItWorks } from "@/shared/components/how-it-works";
 import { JsonLd } from "@/shared/components/json-ld";
+import { MetaPixel } from "@/shared/components/meta-pixel";
 import { MobileBar, Navbar, type NavLink } from "@/shared/components/navbar";
 import { Pricing } from "@/shared/components/pricing";
 import { Testimonials } from "@/shared/components/testimonials";

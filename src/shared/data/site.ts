@@ -36,15 +36,34 @@ export const site = {
   /** Correo de contacto del footer. */
   email: "contacto@centroevaluador6d.com" as string | null,
 
-  /** Fecha límite del bono de primera generación. */
+  /**
+   * Fecha límite del bono de primera generación.
+   * ⚠️ El 5 de septiembre este bono DEBE quitarse (bonusItems: []) o cambiarse
+   * por uno nuevo con fecha real. Una urgencia vencida a la vista destruye la
+   * credibilidad de todo lo demás.
+   */
   bonusDeadline: "4 de septiembre" as string | null,
 
   /**
-   * Qué incluye el bono de primera generación.
-   * TODO: falta el contenido real. Sin decir qué se llevan, la urgencia no
-   * convierte — "bono" a secas no le mueve nada a nadie.
+   * Bono de primera generación, decidido el 14 de agosto de 2026.
+   * Tres piezas apiladas; las dos primeras aplican a cualquier compra, la
+   * tercera solo a Profesional (Ejecutivo y Corporativo ya la incluyen).
+   * Array vacío = el bloque de bono no se renderiza.
    */
-  bonusDescription: "Bono de primera generación" as string | null,
+  bonusItems: [
+    "Sesión de arranque en vivo con Rodrigo, exclusiva de la primera generación",
+    "Un taller extra en vivo que no se repetirá para generaciones futuras",
+    "Al comprar Profesional: la evaluación EC0217.01 incluida — normalmente se paga aparte",
+  ] as readonly string[],
+
+  /**
+   * Pixel de Meta que alimenta los públicos de la campaña (TOF/MOF/BOF).
+   * Es el pixel "Plan_de_Carrera_Marathon" de la cuenta Seis D. Tab
+   * (act_750991560852206). Elegido a propósito sobre el pixel general del
+   * negocio para que los públicos de retargeting queden limpios de otro
+   * tráfico. El id es público por naturaleza — viaja en el HTML.
+   */
+  metaPixelId: "865425979950511",
 
   /** Cuántas empresas al mes admite el bloque con acompañamiento. */
   monthlyCompanySlots: 2 as number | null,

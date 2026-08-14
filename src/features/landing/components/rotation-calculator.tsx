@@ -56,6 +56,7 @@ export function RotationCalculator() {
         return;
       }
 
+      window.fbq?.("track", "Lead", { value: cost, currency: "MXN" });
       setStatus("done");
     } catch {
       setStatus("error");
