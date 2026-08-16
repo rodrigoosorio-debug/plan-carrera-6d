@@ -26,6 +26,8 @@ type Format = { width: number; height: number };
 const FORMATS: Record<string, Format> = {
   feed: { width: 1080, height: 1350 },
   story: { width: 1080, height: 1920 },
+  /** Tarjeta de carrusel de Meta: siempre cuadrada. */
+  square: { width: 1080, height: 1080 },
 };
 
 export async function GET(
@@ -240,4 +242,300 @@ const AD_BODIES: Record<string, React.ReactElement> = {
       </div>
     </div>
   ),
+
+  // ── TOF-05 · Carrusel "Presupuesto que sí se usa" (4 tarjetas) ──
+
+  "tof-05-t1": carouselCard(
+    "1/4",
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        color: GOLD,
+        fontSize: 82,
+        fontWeight: 800,
+        lineHeight: 1.12,
+        letterSpacing: "-2px",
+      }}
+    >
+      <span>¿Cuántos cursos pagó</span>
+      <span>tu empresa este año</span>
+      <span style={{ color: CREAM }}>que nadie terminó?</span>
+    </div>,
+  ),
+
+  "tof-05-t2": carouselCard(
+    "2/4",
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          color: CREAM,
+          fontSize: 78,
+          fontWeight: 800,
+          lineHeight: 1.12,
+          letterSpacing: "-2px",
+        }}
+      >
+        El problema no es tu gente.
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          marginTop: 40,
+          color: GOLD,
+          fontSize: 58,
+          fontWeight: 700,
+          lineHeight: 1.2,
+        }}
+      >
+        <span>Es el formato: en vivo, un solo</span>
+        <span>día, a la hora que no podían.</span>
+      </div>
+    </div>,
+  ),
+
+  "tof-05-t3": carouselCard(
+    "3/4",
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          color: GOLD,
+          fontSize: 78,
+          fontWeight: 800,
+          lineHeight: 1.12,
+          letterSpacing: "-2px",
+        }}
+      >
+        <span>Grabaciones disponibles</span>
+        <span>12 meses.</span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: 40,
+          color: CREAM,
+          fontSize: 58,
+          fontWeight: 700,
+        }}
+      >
+        Cada quien avanza cuando puede.
+      </div>
+    </div>,
+  ),
+
+  "tof-05-t4": carouselCard(
+    "4/4",
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          gap: 20,
+        }}
+      >
+        <span style={{ color: GOLD, fontSize: 120, fontWeight: 800 }}>$83</span>
+        <span style={{ color: CREAM, fontSize: 52, fontWeight: 700 }}>
+          al mes por colaborador
+        </span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          marginTop: 44,
+          color: AQUA,
+          fontSize: 54,
+          fontWeight: 700,
+          lineHeight: 1.2,
+        }}
+      >
+        <span>Presupuesto de capacitación</span>
+        <span>que por fin se ejecuta.</span>
+      </div>
+    </div>,
+  ),
+
+  // ── MOF-02 · Carrusel "La tabla ÷12" (5 tarjetas) ──
+
+  "mof-02-t1": carouselCard(
+    "1/5",
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          color: GOLD,
+          fontSize: 92,
+          fontWeight: 800,
+          lineHeight: 1.1,
+          letterSpacing: "-2px",
+        }}
+      >
+        <span>Hicimos la</span>
+        <span>cuenta por ti.</span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: 44,
+          color: CREAM,
+          fontSize: 56,
+          fontWeight: 700,
+        }}
+      >
+        El acceso dura 12 meses.
+      </div>
+    </div>,
+  ),
+
+  "mof-02-t2": priceCard(
+    "2/5",
+    "CORPORATIVO",
+    "$9,997",
+    "$833/mes",
+    "$27 al día",
+  ),
+  "mof-02-t3": priceCard(
+    "3/5",
+    "EJECUTIVO",
+    "$5,997",
+    "$500/mes",
+    "$16 al día",
+  ),
+  "mof-02-t4": priceCard(
+    "4/5",
+    "PROFESIONAL",
+    "$2,997",
+    "$250/mes",
+    "$8 al día",
+  ),
+
+  "mof-02-t5": (
+    <div style={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
+      {cardBadge("5/5")}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          flexGrow: 1,
+          justifyContent: "center",
+        }}
+      >
+        {priceRows("ESENCIAL", "$997", "$83/mes", "$2.70 al día")}
+        <div
+          style={{
+            display: "flex",
+            marginTop: 52,
+            color: CREAM,
+            fontSize: 62,
+            fontWeight: 800,
+          }}
+        >
+          ¿Sigue pareciendo caro?
+        </div>
+      </div>
+    </div>
+  ),
 };
+
+/** Insignia con el número de tarjeta, para que el orden del carrusel sea obvio. */
+function cardBadge(step: string) {
+  return (
+    <div style={{ display: "flex", justifyContent: "flex-end" }}>
+      <span
+        style={{
+          color: MUTED,
+          fontSize: 30,
+          letterSpacing: 4,
+          border: `2px solid ${MUTED}`,
+          borderRadius: 999,
+          padding: "8px 24px",
+        }}
+      >
+        {step}
+      </span>
+    </div>
+  );
+}
+
+/** Estructura común de tarjeta de carrusel: insignia arriba, cuerpo centrado. */
+function carouselCard(step: string, content: React.ReactElement) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
+      {cardBadge(step)}
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          flexGrow: 1,
+          justifyContent: "center",
+        }}
+      >
+        {content}
+      </div>
+    </div>
+  );
+}
+
+/** Filas de la tabla ÷12: precio grande → mensualidad → diario. */
+function priceRows(
+  level: string,
+  price: string,
+  monthly: string,
+  daily: string,
+) {
+  return (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <span
+        style={{
+          color: MUTED,
+          fontSize: 40,
+          letterSpacing: 6,
+          fontWeight: 700,
+        }}
+      >
+        {level}
+      </span>
+      <span
+        style={{
+          color: GOLD,
+          fontSize: 150,
+          fontWeight: 800,
+          letterSpacing: "-4px",
+        }}
+      >
+        {price}
+      </span>
+      <div
+        style={{
+          display: "flex",
+          alignItems: "baseline",
+          gap: 26,
+          marginTop: 12,
+        }}
+      >
+        <span style={{ color: CREAM, fontSize: 66, fontWeight: 800 }}>
+          → {monthly}
+        </span>
+        <span style={{ color: AQUA, fontSize: 52, fontWeight: 700 }}>
+          → {daily}
+        </span>
+      </div>
+    </div>
+  );
+}
+
+/** Tarjeta de precio del carrusel MOF-02. */
+function priceCard(
+  step: string,
+  level: string,
+  price: string,
+  monthly: string,
+  daily: string,
+) {
+  return carouselCard(step, priceRows(level, price, monthly, daily));
+}

@@ -11,15 +11,25 @@ import { mkdir, writeFile } from "node:fs/promises";
 
 const BASE = process.env.BASE_URL ?? "http://localhost:3000";
 const OUT = "public/ads";
-const ADS = ["tof-03", "tof-09", "mof-06"];
-const FORMATS = ["feed", "story"];
+const ESTATICOS = ["tof-03", "tof-09", "mof-06"];
+const CARRUSELES = [
+  ...[1, 2, 3, 4].map((n) => `tof-05-t${n}`),
+  ...[1, 2, 3, 4, 5].map((n) => `mof-02-t${n}`),
+];
 
 await mkdir(OUT, { recursive: true });
 let failed = 0;
 
-for (const id of ADS) {
-  for (const f of FORMATS) {
-    const name = `${id.toUpperCase()}_estatico_${f}_v1.png`;
+const jobs = [
+  ...ESTATICOS.flatMap((id) => ["feed", "story"].map((f) => ({ id, f, name: `${id.toUpperCase()}_estatico_${f}_v1.png` }))),
+  ...CARRUSELES.map((id) => {
+    const [a, b, card] = id.toUpperCase().split("-");
+    return { id, f: "square", name: `${a}-${b}_carrusel_${card.toLowerCase()}_v1.png` };
+  }),
+];
+
+for (const { id, f, name } of jobs) {
+  {
     try {
       const res = await fetch(`${BASE}/ad-estatico/${id}?f=${f}`);
       if (!res.ok) { console.error(`✗ ${name} — HTTP ${res.status}`); failed++; continue; }
