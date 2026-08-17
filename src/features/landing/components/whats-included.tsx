@@ -12,7 +12,7 @@ interface Item {
 
 const items: Item[] = [
   {
-    title: "14 habilidades, 5 módulos y 6 talleres",
+    title: "20 habilidades, 5 módulos y 6 talleres",
     body: "Comunicación, inteligencia emocional, liderazgo, pensamiento estratégico, gestión del tiempo y ética. Los talleres cierran con IA aplicada al trabajo, negociación laboral y educación financiera.",
     wide: true,
   },

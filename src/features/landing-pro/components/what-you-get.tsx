@@ -29,7 +29,7 @@ const items: Item[] = [
     featured: true,
   },
   {
-    title: "14 habilidades en 5 módulos y 6 talleres",
+    title: "20 habilidades en 5 módulos y 6 talleres",
     body: "Comunicación, inteligencia emocional, liderazgo, pensamiento estratégico, gestión del tiempo y ética. Los talleres cierran con IA aplicada al trabajo, negociación laboral y educación financiera.",
     wide: true,
   },

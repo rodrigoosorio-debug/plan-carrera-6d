@@ -36,15 +36,15 @@ export const plans: Plan[] = [
     price: 997,
     weeklyHours: "1 a 3 horas por semana",
     summary:
-      "Programa introductorio con diagnóstico inicial. Los 5 módulos y los talleres. Para probar el sistema antes de invertir más.",
+      "Programa introductorio con diagnóstico inicial. Los 5 módulos y 5 de los 6 talleres. Para probar el sistema antes de invertir más.",
     summaryPro:
-      "Para probar el sistema sin comprometerte de más. Diagnóstico inicial, los 5 módulos y los talleres.",
+      "Para probar el sistema sin comprometerte de más. Diagnóstico inicial, los 5 módulos y 5 de los 6 talleres.",
     highlights: [
       "Diagnóstico profesional inicial",
-      "14 habilidades en 5 módulos y 6 talleres",
+      "20 habilidades en 5 módulos y 5 talleres",
       "Plataforma disponible 24/7",
     ],
-    excludes: ["Sin constancias", "Sin Excel", "Sin coaching en vivo"],
+    excludes: ["Sin constancias", "Sin Excel", "Sin sesiones en vivo ni coaching"],
     channel: "checkout",
     ctaLabel: "Empezar con Esencial",
   },
@@ -64,7 +64,7 @@ export const plans: Plan[] = [
       "Coaching semanal en vivo",
       "Alineación SEP-CONOCER EC0217.01 · evaluación aparte",
     ],
-    excludes: ["Sin certificación Microsoft"],
+    excludes: ["Certificación Microsoft opcional, pagando el examen aparte"],
     channel: "checkout",
     ctaLabel: "Empezar con Profesional",
     featured: true,
