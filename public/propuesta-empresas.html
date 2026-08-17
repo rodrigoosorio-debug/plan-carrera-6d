@@ -1,0 +1,980 @@
+<!-- Propuesta de ventas B2B · Plan de Carrera Profesional · 6D Consultoría.
+     Diseñada con el sistema 6D v2.0 (Montserrat/Inter, rampa violeta #482682,
+     dorado premium, mesh aurora). Se imprime a PDF 16:9 con Chrome headless:
+     npm run propuesta:pdf -->
+<!doctype html>
+<html lang="es-MX">
+  <head>
+    <meta charset="utf-8" />
+    <title>Plan de Carrera Profesional — Propuesta empresarial</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --violet-700: #482682;
+        --violet-600: #64368c;
+        --violet-500: #835cbe;
+        --violet-400: #a387d5;
+        --violet-900: #2b1a4d;
+        --violet-950: #160d2a;
+        --bg: #160d2a;
+        --surface: #1f1440;
+        --surface-raised: #2a1c55;
+        --border: #3a2a66;
+        --border-strong: #4e3a80;
+        --text: #f3effa;
+        --text-2: #cfc4e6;
+        --muted: #a99fc4;
+        --gold-2: #ffd66f;
+        --gold-3: #e0a54a;
+        --gold-5: #b3681f;
+        --grad-gold: linear-gradient(
+          100deg,
+          #875425 0%,
+          #b3681f 28%,
+          #ffd66f 62%,
+          #e0a54a 100%
+        );
+        --grad-brand: linear-gradient(
+          135deg,
+          #482682 0%,
+          #5a2f94 46%,
+          #64368c 100%
+        );
+        --danger: #ff7a8a;
+        --font-d: "Montserrat", sans-serif;
+        --font-b: "Inter", sans-serif;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        background: #0e081c;
+      }
+      body {
+        font-family: var(--font-b);
+        color: var(--text);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .slide {
+        width: 1280px;
+        height: 720px;
+        position: relative;
+        overflow: hidden;
+        background: var(--bg);
+        padding: 72px 84px;
+        display: flex;
+        flex-direction: column;
+        page-break-after: always;
+        break-after: page;
+      }
+      .mesh {
+        background-color: var(--violet-950);
+        background-image:
+          radial-gradient(42% 48% at 18% 22%, #5a2f94 0%, transparent 60%),
+          radial-gradient(38% 42% at 82% 18%, #64368c 0%, transparent 62%),
+          radial-gradient(46% 50% at 72% 82%, #b3681f 0%, transparent 55%),
+          radial-gradient(50% 55% at 30% 88%, #2b1a4d 0%, transparent 60%);
+      }
+      .eyebrow {
+        font: 600 13px/1 var(--font-d);
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--violet-400);
+      }
+      .eyebrow.gold {
+        color: var(--gold-3);
+      }
+      h1 {
+        font: 800 64px/1.05 var(--font-d);
+        letter-spacing: -0.02em;
+        text-transform: uppercase;
+        text-wrap: balance;
+      }
+      h2 {
+        font: 800 44px/1.1 var(--font-d);
+        letter-spacing: -0.015em;
+        text-transform: uppercase;
+        margin: 14px 0 0;
+      }
+      .gold {
+        background: var(--grad-gold);
+        -webkit-background-clip: text;
+        background-clip: text;
+        color: transparent;
+      }
+      p.lead {
+        font: 400 21px/1.6 var(--font-b);
+        color: var(--text-2);
+        max-width: 900px;
+      }
+      .big {
+        font: 800 120px/1 var(--font-d);
+        letter-spacing: -0.03em;
+      }
+      .footer {
+        position: absolute;
+        bottom: 34px;
+        left: 84px;
+        right: 84px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font: 500 13px/1 var(--font-b);
+        color: var(--muted);
+      }
+      .stripe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 8px;
+        background: var(--grad-brand);
+      }
+      .stripe.g {
+        background: var(--grad-gold);
+      }
+      .brand-line {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+      }
+      .brand-line span {
+        font: 700 15px/1 var(--font-d);
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--text-2);
+      }
+      .logo {
+        width: 52px;
+        height: 42px;
+      }
+      .card {
+        background: var(--surface);
+        border: 1px solid var(--border);
+        border-radius: 18px;
+        padding: 28px 30px;
+        position: relative;
+        overflow: hidden;
+      }
+      .card.raised {
+        background: var(--surface-raised);
+      }
+      .card .topline {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 6px;
+        background: var(--grad-brand);
+      }
+      .card .topline.g {
+        background: var(--grad-gold);
+      }
+      .pill {
+        display: inline-block;
+        border-radius: 9999px;
+        padding: 10px 22px;
+        font: 700 14px/1 var(--font-d);
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+      .pill.gold {
+        background: var(--grad-gold);
+        color: #3a2607;
+      }
+      .pill.ghost {
+        border: 1.5px solid var(--violet-500);
+        color: var(--violet-400);
+      }
+      .grid {
+        display: grid;
+        gap: 18px;
+      }
+      .num {
+        font: 800 15px/1 var(--font-d);
+        color: var(--gold-3);
+      }
+      .check {
+        color: var(--gold-3);
+        font-weight: 700;
+      }
+      .small {
+        font: 400 14px/1.5 var(--font-b);
+        color: var(--muted);
+      }
+      .kicker {
+        font: 700 17px/1.35 var(--font-d);
+        letter-spacing: 0.01em;
+      }
+      table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      @page {
+        size: 1280px 720px;
+        margin: 0;
+      }
+      @media print {
+        .slide {
+          page-break-after: always;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══ 1 · PORTADA ═══ -->
+    <section class="slide mesh" style="justify-content: space-between">
+      <div class="brand-line">
+        <img
+          class="logo"
+          src="logo-6d.svg"
+          alt=""
+          style="width: 60px; height: 48px"
+        />
+        <span>6D Consultoría</span>
+      </div>
+      <div>
+        <p class="eyebrow gold" style="margin-bottom: 18px">
+          Propuesta empresarial
+        </p>
+        <h1 style="font-size: 76px; max-width: 980px">
+          Plan de Carrera <span class="gold">Profesional</span>
+        </h1>
+        <p class="lead" style="margin-top: 26px; font-size: 24px">
+          Que tu mejor gente se quede.
+        </p>
+      </div>
+      <div class="footer" style="position: static">
+        <span
+          >Respaldado por Universidad ICEMéxico · SEP-CONOCER · Microsoft · Open
+          English</span
+        >
+        <span>plan.6dlinks.com</span>
+      </div>
+    </section>
+
+    <!-- ═══ 2 · LA TESIS ═══ -->
+    <section class="slide" style="justify-content: center">
+      <div class="stripe"></div>
+      <p class="eyebrow">La tesis</p>
+      <h2 style="font-size: 58px; max-width: 1050px; margin-top: 22px">
+        Tu gente no renuncia por dinero.<br /><span class="gold"
+          >Renuncia porque no ve futuro.</span
+        >
+      </h2>
+      <p class="lead" style="margin-top: 30px">
+        La razón número uno por la que se va el talento no es el sueldo: es no
+        saber qué sigue. Cuando alguien de fuera les ofrece un puesto con
+        nombre, se van — porque adentro nadie escribió su ruta.
+      </p>
+      <div class="footer">
+        <span>6D Consultoría · Plan de Carrera Profesional</span><span>02</span>
+      </div>
+    </section>
+
+    <!-- ═══ 3 · EL PROBLEMA EN NÚMEROS ═══ -->
+    <section class="slide">
+      <div class="stripe"></div>
+      <p class="eyebrow">El costo real de la rotación</p>
+      <h2>Lo que cuesta <span class="gold">una</span> renuncia</h2>
+      <div
+        style="
+          display: flex;
+          align-items: flex-end;
+          gap: 28px;
+          margin-top: 44px;
+        "
+      >
+        <span class="big" style="color: var(--danger)">$90,000</span>
+        <span
+          style="
+            font: 700 30px/1.2 var(--font-d);
+            color: var(--text-2);
+            padding-bottom: 16px;
+          "
+          >a $135,000 MXN</span
+        >
+      </div>
+      <p class="lead" style="margin-top: 28px">
+        Es lo que cuesta reemplazar a un colaborador de $15,000 al mes: entre
+        <strong style="color: var(--text)">6 y 9 meses de su sueldo</strong> en
+        reclutamiento, curva de aprendizaje y los meses en que nadie rinde
+        igual. Y casi nunca aparece en ningún presupuesto.
+      </p>
+      <div class="footer">
+        <span>Cifra de referencia ampliamente citada por SHRM</span
+        ><span>03</span>
+      </div>
+    </section>
+
+    <!-- ═══ 4 · EL CONTRASTE ═══ -->
+    <section class="slide">
+      <div class="stripe g"></div>
+      <p class="eyebrow">La cuenta que cambia la decisión</p>
+      <div
+        class="grid"
+        style="grid-template-columns: 1fr 1fr; margin-top: 36px"
+      >
+        <div class="card">
+          <p class="eyebrow" style="color: var(--danger)">Reemplazarlo</p>
+          <p style="font: 800 72px/1 var(--font-d); margin-top: 14px">
+            $90,000+
+          </p>
+          <p class="small" style="margin-top: 12px">Cada vez que pasa.</p>
+        </div>
+        <div class="card raised">
+          <div class="topline g"></div>
+          <p class="eyebrow gold">Darle una ruta</p>
+          <p
+            class="gold"
+            style="font: 800 72px/1 var(--font-d); margin-top: 14px"
+          >
+            $997
+          </p>
+          <p class="small" style="margin-top: 12px">
+            Por persona, al año. $83 al mes. IVA incluido.
+          </p>
+        </div>
+      </div>
+      <h2
+        style="
+          font-size: 34px;
+          margin-top: 40px;
+          text-transform: none;
+          letter-spacing: 0;
+        "
+      >
+        Por lo que cuesta perder a <span class="gold">una</span> persona, le das
+        plan de carrera a <span class="gold">90</span>.
+      </h2>
+      <div class="footer">
+        <span
+          >No es un gasto de capacitación: es no volver a empezar de cero</span
+        ><span>04</span>
+      </div>
+    </section>
+
+    <!-- ═══ 5 · CÓMO FUNCIONA ═══ -->
+    <section class="slide">
+      <div class="stripe"></div>
+      <p class="eyebrow">El sistema</p>
+      <h2>Tres pasos. Empiezan la misma semana.</h2>
+      <div
+        class="grid"
+        style="grid-template-columns: 1fr 1fr 1fr; margin-top: 40px"
+      >
+        <div class="card">
+          <div class="topline"></div>
+          <p class="num">PASO 1</p>
+          <p class="kicker" style="margin-top: 12px">Diagnóstico</p>
+          <p class="small" style="margin-top: 10px; font-size: 15px">
+            Cada colaborador hace el análisis Pyxoom y una sesión con su
+            consultor vocacional. Sale su punto de partida real.
+          </p>
+        </div>
+        <div class="card">
+          <div class="topline"></div>
+          <p class="num">PASO 2</p>
+          <p class="kicker" style="margin-top: 12px">Ruta con fechas</p>
+          <p class="small" style="margin-top: 10px; font-size: 15px">
+            Plan de formación personalizado y diagrama de Gantt: qué le toca
+            cada semana de los próximos seis meses.
+          </p>
+        </div>
+        <div class="card">
+          <div class="topline"></div>
+          <p class="num">PASO 3</p>
+          <p class="kicker" style="margin-top: 12px">Seis meses de ejecución</p>
+          <p class="small" style="margin-top: 10px; font-size: 15px">
+            Cuatro meses de módulos, dos de talleres, coaching semanal en vivo
+            todo el camino.
+          </p>
+        </div>
+      </div>
+      <p class="lead" style="margin-top: 34px; font-size: 19px">
+        El programa dura <strong style="color: var(--text)">6 meses</strong>. El
+        acceso a la plataforma y a todas las grabaciones dura
+        <strong style="color: var(--text)">12</strong> — para volver a lo que
+        necesiten, cuando lo necesiten.
+      </p>
+      <div class="footer">
+        <span>Plataforma ICEM Online disponible 24/7</span><span>05</span>
+      </div>
+    </section>
+
+    <!-- ═══ 6 · QUÉ INCLUYE ═══ -->
+    <section class="slide">
+      <div class="stripe"></div>
+      <p class="eyebrow">El contenido</p>
+      <h2>14 habilidades · 5 módulos · 6 talleres</h2>
+      <div
+        class="grid"
+        style="grid-template-columns: 1.15fr 1fr; margin-top: 34px; gap: 24px"
+      >
+        <div class="card">
+          <p class="kicker">
+            5 módulos de competencias
+            <span style="color: var(--muted); font-weight: 500">(4 meses)</span>
+          </p>
+          <p
+            style="
+              font: 400 16px/1.9 var(--font-b);
+              color: var(--text-2);
+              margin-top: 12px;
+            "
+          >
+            <span class="check">1</span>&nbsp; Competencias personales<br />
+            <span class="check">2</span>&nbsp; Liderazgo y gestión de equipos<br />
+            <span class="check">3</span>&nbsp; Competencias estratégicas<br />
+            <span class="check">4</span>&nbsp; Gestión del tiempo y
+            productividad<br />
+            <span class="check">5</span>&nbsp; Ética y responsabilidad social
+          </p>
+        </div>
+        <div class="card">
+          <p class="kicker">
+            6 talleres
+            <span style="color: var(--muted); font-weight: 500">(2 meses)</span>
+          </p>
+          <p
+            style="
+              font: 400 15px/1.75 var(--font-b);
+              color: var(--text-2);
+              margin-top: 12px;
+            "
+          >
+            IA para y en el trabajo · Análisis organizacional · Mejora de
+            procesos · Educación financiera · Negociación laboral · Seguimiento
+            de proyecto de mejora
+          </p>
+          <p class="kicker" style="margin-top: 18px">Además</p>
+          <p
+            style="
+              font: 400 15px/1.75 var(--font-b);
+              color: var(--text-2);
+              margin-top: 8px;
+            "
+          >
+            200 horas de Excel (básico → avanzado) · consultor vocacional
+            asignado · coaching semanal en vivo · constancias con valor
+            curricular
+          </p>
+        </div>
+      </div>
+      <div class="footer">
+        <span
+          >Un acceso = una persona. Cada colaborador con su propia ruta.</span
+        ><span>06</span>
+      </div>
+    </section>
+
+    <!-- ═══ 7 · CERTIFICACIONES ═══ -->
+    <section class="slide">
+      <div class="stripe g"></div>
+      <p class="eyebrow gold">Lo verificable</p>
+      <h2>Certificaciones que cualquiera puede comprobar</h2>
+      <div
+        class="grid"
+        style="grid-template-columns: 1fr 1fr 1fr; margin-top: 36px"
+      >
+        <div class="card">
+          <div class="topline g"></div>
+          <p class="kicker">Microsoft Excel MOS</p>
+          <p class="small" style="margin-top: 10px">
+            Certificación oficial de Microsoft, con simulador de práctica y
+            soporte de certificación.
+          </p>
+        </div>
+        <div class="card raised">
+          <div class="topline g"></div>
+          <p class="kicker">SEP-CONOCER · EC0217.01</p>
+          <p class="small" style="margin-top: 10px">
+            Impartición de cursos de formación. Verificable en el RENEC con el
+            folio de cada persona. Tu colaborador queda habilitado para
+            capacitar dentro de tu empresa.
+          </p>
+        </div>
+        <div class="card">
+          <div class="topline g"></div>
+          <p class="kicker">Cambridge Linguaskill</p>
+          <p class="small" style="margin-top: 10px">
+            Un año de Open English con profesores nativos y certificado de nivel
+            de Cambridge.
+          </p>
+        </div>
+      </div>
+      <div
+        class="card"
+        style="margin-top: 26px; border-color: var(--border-strong)"
+      >
+        <p style="font: 600 17px/1.5 var(--font-b); color: var(--text)">
+          No revendemos la certificación CONOCER:
+          <span class="gold" style="font-weight: 800"
+            >somos el Centro de Evaluación acreditado que la evalúa y la
+            emite.</span
+          >
+        </p>
+        <p class="small" style="margin-top: 8px">
+          Código de acreditación CE2140-OC063-18 — público, verificable antes de
+          contratarnos.
+        </p>
+      </div>
+      <div class="footer">
+        <span
+          >Certificaciones según el nivel elegido (ver siguiente página)</span
+        ><span>07</span>
+      </div>
+    </section>
+
+    <!-- ═══ 8 · LOS 4 NIVELES ═══ -->
+    <section class="slide">
+      <div class="stripe"></div>
+      <p class="eyebrow">La inversión</p>
+      <h2>Cuatro niveles. Todos individuales.</h2>
+      <table style="margin-top: 30px">
+        <tr style="border-bottom: 1px solid var(--border-strong)">
+          <th
+            style="
+              text-align: left;
+              padding: 10px 8px;
+              font: 700 13px/1 var(--font-d);
+              letter-spacing: 0.1em;
+              color: var(--muted);
+            "
+          >
+            NIVEL
+          </th>
+          <th
+            style="
+              text-align: left;
+              padding: 10px 8px;
+              font: 700 13px/1 var(--font-d);
+              letter-spacing: 0.1em;
+              color: var(--muted);
+            "
+          >
+            QUÉ LO DISTINGUE
+          </th>
+          <th
+            style="
+              text-align: right;
+              padding: 10px 8px;
+              font: 700 13px/1 var(--font-d);
+              letter-spacing: 0.1em;
+              color: var(--muted);
+            "
+          >
+            REGULAR
+          </th>
+          <th
+            style="
+              text-align: right;
+              padding: 10px 8px;
+              font: 700 13px/1 var(--font-d);
+              letter-spacing: 0.1em;
+              color: var(--muted);
+            "
+          >
+            HOY
+          </th>
+          <th
+            style="
+              text-align: right;
+              padding: 10px 8px;
+              font: 700 13px/1 var(--font-d);
+              letter-spacing: 0.1em;
+              color: var(--muted);
+            "
+          >
+            ÷12 MESES
+          </th>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border)">
+          <td style="padding: 16px 8px; font: 700 19px/1.2 var(--font-d)">
+            Esencial
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              font: 400 15px/1.4 var(--font-b);
+              color: var(--text-2);
+            "
+          >
+            Para probar el sistema. Diagnóstico + módulos y talleres.
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              color: var(--muted);
+              text-decoration: line-through;
+            "
+          >
+            $1,994
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              font: 800 24px/1 var(--font-d);
+              color: var(--gold-2);
+            "
+          >
+            $997
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              font: 600 16px/1 var(--font-b);
+              color: var(--text-2);
+            "
+          >
+            $83/mes
+          </td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border)">
+          <td style="padding: 16px 8px; font: 700 19px/1.2 var(--font-d)">
+            Profesional
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              font: 400 15px/1.4 var(--font-b);
+              color: var(--text-2);
+            "
+          >
+            + Constancias, 200 h de Excel, coaching semanal, alineación CONOCER.
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              color: var(--muted);
+              text-decoration: line-through;
+            "
+          >
+            $5,994
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              font: 800 24px/1 var(--font-d);
+              color: var(--gold-2);
+            "
+          >
+            $2,997
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              font: 600 16px/1 var(--font-b);
+              color: var(--text-2);
+            "
+          >
+            $250/mes
+          </td>
+        </tr>
+        <tr style="border-bottom: 1px solid var(--border)">
+          <td style="padding: 16px 8px; font: 700 19px/1.2 var(--font-d)">
+            Ejecutivo
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              font: 400 15px/1.4 var(--font-b);
+              color: var(--text-2);
+            "
+          >
+            + Certificaciones Microsoft MOS y CONOCER EC0217.01 incluidas.
+            Acompañamiento de arranque.
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              color: var(--muted);
+              text-decoration: line-through;
+            "
+          >
+            $11,994
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              font: 800 24px/1 var(--font-d);
+              color: var(--gold-2);
+            "
+          >
+            $5,997
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              font: 600 16px/1 var(--font-b);
+              color: var(--text-2);
+            "
+          >
+            $500/mes
+          </td>
+        </tr>
+        <tr>
+          <td style="padding: 16px 8px; font: 700 19px/1.2 var(--font-d)">
+            Corporativo
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              font: 400 15px/1.4 var(--font-b);
+              color: var(--text-2);
+            "
+          >
+            + Un año de Open English y certificado Cambridge. Las tres
+            certificaciones.
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              color: var(--muted);
+              text-decoration: line-through;
+            "
+          >
+            $19,994
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              font: 800 24px/1 var(--font-d);
+              color: var(--gold-2);
+            "
+          >
+            $9,997
+          </td>
+          <td
+            style="
+              padding: 16px 8px;
+              text-align: right;
+              font: 600 16px/1 var(--font-b);
+              color: var(--text-2);
+            "
+          >
+            $833/mes
+          </td>
+        </tr>
+      </table>
+      <p class="small" style="margin-top: 18px">
+        Precios en MXN por persona, IVA incluido. Un acceso = una persona. Se
+        puede subir de nivel pagando solo la diferencia — el avance se respeta.
+      </p>
+      <div class="footer">
+        <span
+          >Esencial y Profesional: compra directa · Ejecutivo y Corporativo: se
+          cierran contigo</span
+        ><span>08</span>
+      </div>
+    </section>
+
+    <!-- ═══ 9 · LO QUE DICEN ═══ -->
+    <section class="slide">
+      <div class="stripe"></div>
+      <p class="eyebrow">Empresas que ya entraron</p>
+      <h2>Lo que cambió, en sus palabras</h2>
+      <div
+        class="grid"
+        style="grid-template-columns: 1fr 1fr; margin-top: 34px; gap: 24px"
+      >
+        <div class="card">
+          <p style="font: 400 17px/1.65 var(--font-b); color: var(--text-2)">
+            "Dejamos de pagar horas extra en temporada. Y me retuve a dos
+            personas que ya andaban viendo para irse. Haz la cuenta al revés:
+            pagué menos por capacitar a ocho gentes todo un año que lo que me
+            cuesta reemplazar a una sola cuando se va."
+          </p>
+          <p class="kicker" style="margin-top: 16px; color: var(--gold-3)">
+            Lic. Roberto M.
+          </p>
+          <p class="small">
+            Director general · Despacho contable, 22 colaboradores · 8 accesos
+          </p>
+        </div>
+        <div class="card">
+          <p style="font: 400 17px/1.65 var(--font-b); color: var(--text-2)">
+            "Antes los supervisores llegaban a decir 'hubo problemas'; ahora
+            llegan con datos. Eso cambió la conversación completa. Tres de ellos
+            me pidieron seguir con más certificaciones por su cuenta — eso nunca
+            había pasado."
+          </p>
+          <p class="kicker" style="margin-top: 16px; color: var(--gold-3)">
+            Ing. Claudia P.
+          </p>
+          <p class="small">
+            Gerente de RH · Manufactura, planta de 140 · 15 accesos
+          </p>
+        </div>
+      </div>
+      <p class="small" style="margin-top: 22px">
+        Testimonios reales, publicados con autorización. Los resultados son
+        individuales y dependen del punto de partida y del esfuerzo de cada
+        equipo: no son típicos ni garantizados.
+      </p>
+      <div class="footer">
+        <span>Más testimonios en plan.6dlinks.com</span><span>09</span>
+      </div>
+    </section>
+
+    <!-- ═══ 10 · GARANTÍA + URGENCIA ═══ -->
+    <section class="slide">
+      <div class="stripe g"></div>
+      <p class="eyebrow gold">Riesgo y condiciones</p>
+      <h2>El riesgo lo tomamos nosotros</h2>
+      <div
+        class="grid"
+        style="grid-template-columns: 1.2fr 1fr; margin-top: 34px; gap: 24px"
+      >
+        <div class="card raised">
+          <div class="topline g"></div>
+          <p class="kicker">Garantía</p>
+          <p
+            style="
+              font: 400 18px/1.6 var(--font-b);
+              color: var(--text-2);
+              margin-top: 12px;
+            "
+          >
+            Tu gente completa el
+            <strong style="color: var(--text)"
+              >módulo 1 en los primeros 7 días</strong
+            >. Si con eso decides que no es para ustedes, te devolvemos el
+            <strong style="color: var(--text)">100%</strong>.
+          </p>
+          <p class="small" style="margin-top: 12px">
+            Es una garantía con una condición, y la decimos de frente: queremos
+            que lo juzgues habiéndolo visto por dentro, no por la portada.
+          </p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 18px">
+          <div class="card">
+            <p class="kicker" style="color: var(--gold-3)">
+              Bono de 1ª generación · hasta el 4 de septiembre
+            </p>
+            <p class="small" style="margin-top: 10px">
+              Sesión de arranque en vivo con Rodrigo · taller extra que no se
+              repetirá · evaluación EC0217.01 incluida al comprar Profesional.
+            </p>
+          </div>
+          <div class="card">
+            <p class="kicker" style="color: var(--gold-3)">Cupo real</p>
+            <p class="small" style="margin-top: 10px">
+              Solo 2 empresas al mes con acompañamiento de arranque (Ejecutivo y
+              Corporativo). Es la capacidad que tenemos para implementar bien.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="footer">
+        <span>Reembolso del 100% al cumplirse la condición</span><span>10</span>
+      </div>
+    </section>
+
+    <!-- ═══ 11 · QUIÉNES SOMOS ═══ -->
+    <section class="slide">
+      <div class="stripe"></div>
+      <p class="eyebrow">Quién responde por esto</p>
+      <h2>6D Consultoría</h2>
+      <p class="lead" style="margin-top: 24px">
+        Centro de Evaluación
+        <strong style="color: var(--text)"
+          >acreditado ante el CONOCER-SEP</strong
+        >
+        — el organismo de la Secretaría de Educación Pública que regula la
+        certificación de competencias en México — y licenciatarios de
+        Universidad ICEMéxico para el Plan de Carrera Profesional.
+      </p>
+      <div
+        class="grid"
+        style="grid-template-columns: 1fr 1fr; margin-top: 32px; gap: 24px"
+      >
+        <div class="card">
+          <p class="eyebrow gold">Acreditación verificable</p>
+          <p
+            style="font: 800 34px/1.1 var(--font-d); margin-top: 12px"
+            class="gold"
+          >
+            CE2140-OC063-18
+          </p>
+          <p class="small" style="margin-top: 10px">
+            Consultable en el registro público del RENEC. No te pedimos que nos
+            creas: verifícalo antes de firmar.
+          </p>
+        </div>
+        <div class="card">
+          <p class="eyebrow">Estándares que evaluamos</p>
+          <p
+            style="
+              font: 600 17px/1.9 var(--font-b);
+              color: var(--text-2);
+              margin-top: 10px;
+            "
+          >
+            EC0076 ·
+            <span class="gold" style="font-weight: 800">EC0217.01</span> ·
+            EC0301 · EC0366 · EC1621
+          </p>
+          <p class="small">El EC0217.01 es el que entra en el programa.</p>
+        </div>
+      </div>
+      <div class="footer">
+        <span>SEIS D, S.A.S. de C.V. · centroevaluador6d.com</span
+        ><span>11</span>
+      </div>
+    </section>
+
+    <!-- ═══ 12 · SIGUIENTE PASO ═══ -->
+    <section class="slide mesh" style="justify-content: center">
+      <p class="eyebrow gold">El siguiente paso</p>
+      <h2 style="font-size: 52px; max-width: 1000px">
+        ¿Cuántas personas de tu equipo entran?
+      </h2>
+      <p class="lead" style="margin-top: 26px">
+        Dinos cuántos colaboradores son y te armamos la propuesta con factura
+        <strong style="color: var(--text)">hoy mismo</strong>. La implementación
+        arranca la misma semana.
+      </p>
+      <div
+        style="display: flex; gap: 18px; margin-top: 40px; align-items: center"
+      >
+        <span class="pill gold">WhatsApp · +52 993 223 2863</span>
+        <span class="pill ghost">plan.6dlinks.com</span>
+      </div>
+      <div class="footer">
+        <div class="brand-line">
+          <img
+            class="logo"
+            src="logo-6d.svg"
+            alt=""
+            style="width: 40px; height: 32px"
+          /><span style="font-size: 13px">6D Consultoría</span>
+        </div>
+        <span
+          >Precios con IVA incluido · Garantía: módulo 1 en 7 días y
+          decides</span
+        >
+      </div>
+    </section>
+  </body>
+</html>
