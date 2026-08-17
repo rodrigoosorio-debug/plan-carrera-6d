@@ -23,14 +23,15 @@ const blocks = [
 export function YourCv() {
   return (
     <Section dark>
-      <Eyebrow>Bonus de empleabilidad</Eyebrow>
+      <Eyebrow>Bonus de empleabilidad · Ejecutivo y Corporativo</Eyebrow>
       <SectionTitle className="max-w-2xl">
         Y después, la parte que nadie te enseña.
       </SectionTitle>
 
       <p className="mt-8 max-w-prose text-lg leading-relaxed text-muted">
         Puedes tener las certificaciones y seguir sin saber cómo usarlas. Por
-        eso el programa no termina en el certificado.
+        eso, en los niveles Ejecutivo y Corporativo, el programa no termina en
+        el certificado.
       </p>
 
       <div className="mt-12 grid gap-6 sm:grid-cols-3">
