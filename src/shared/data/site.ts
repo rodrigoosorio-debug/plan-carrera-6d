@@ -30,8 +30,8 @@ export const site = {
     standards: ["EC0076", "EC0217.01", "EC0301", "EC0366", "EC1621"],
   },
 
-  /** Número en formato internacional sin signos: +52 993 223 2863. */
-  whatsappNumber: "529932232863" as string | null,
+  /** Número en formato internacional sin signos: +52 993 516 8287. */
+  whatsappNumber: "529935168287" as string | null,
 
   /** Correo de contacto del footer. */
   email: "contacto@centroevaluador6d.com" as string | null,
