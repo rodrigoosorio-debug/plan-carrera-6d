@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Test de Empleabilidad · 6D · Plan de Carrera Profesional</title>
+<meta name="description" content="Descubre en 5 minutos las 3 brechas que te están costando entrevistas. Test gratuito del Plan de Carrera Profesional 6D." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="https://plan.6dlinks.com/test-empleabilidad">
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','865425979950511');
+fbq('track','PageView');
+fbq('track','ViewContent',{content_name:'Test de Empleabilidad'});
+</script>
+<style>
+  /* ===== 6D · Transformación Digital — Design System v2.0 (tokens exactos) ===== */
+  :root{
+    /* Rampa violeta 6D */
+    --violet-50:#F7F4FD; --violet-100:#EDE8F9; --violet-200:#DDD3F3; --violet-300:#C5B3E8;
+    --violet-400:#A387D5; --violet-500:#835CBE; --violet-600:#64368C; --violet-700:#482682;
+    --violet-800:#3D226A; --violet-900:#2B1A4D; --violet-950:#160D2A;
+    /* Oro */
+    --gold-700:#875425; --gold-500:#B3681F; --gold-300:#E0A54A; --gold-200:#FFD66F;
+    /* Neutros */
+    --neutral-200:#E2DDEC; --neutral-500:#837C92; --neutral-600:#625B70; --ink:#1D1D1B;
+    /* Tema dark (tintado de violeta, no negro) */
+    --bg:#160D2A; --surface:#1F1440; --surface-raised:#2A1C55; --surface-sunken:#120A22;
+    --border:#3A2A66; --border-strong:#4E3A80;
+    --text-primary:#F3EFFA; --text-secondary:#CFC4E6; --text-muted:#A99FC4; --text-on-accent:#17102B;
+    --accent:#A387D5; --accent-hover:#C5B3E8; --focus-ring:#C5B3E8;
+    --success:#4FD39C; --warning:#F5C15A; --danger:#FF7A8A;
+    /* Tipografía */
+    --font-display:"Montserrat",ui-sans-serif,system-ui,sans-serif;
+    --font-body:"Inter",ui-sans-serif,system-ui,sans-serif;
+    --ls-display:-.02em; --ls-eyebrow:.14em;
+    /* Radios ancla */
+    --radius-lg:18px; --radius-2xl:30px; --radius-md:12px; --radius-pill:9999px;
+    /* Sombras tintadas violeta */
+    --shadow-color:275 60% 4%;
+    --shadow-md:0 2px 4px hsl(var(--shadow-color)/.30), 0 8px 20px hsl(var(--shadow-color)/.36);
+    --shadow-lg:0 4px 8px hsl(var(--shadow-color)/.30), 0 16px 36px hsl(var(--shadow-color)/.44);
+    --shadow-glow:0 10px 34px hsl(268 55% 45% / .45);
+    --shadow-glow-gold:0 12px 34px hsl(40 80% 45% / .40);
+    /* Gradientes de marca */
+    --grad-brand:linear-gradient(135deg,#482682 0%,#5A2F94 46%,#64368C 100%);
+    --grad-gold:linear-gradient(100deg,#875425 0%,#B3681F 28%,#FFD66F 62%,#E0A54A 100%);
+    /* Motion */
+    --dur-fast:150ms; --ease-spring:cubic-bezier(.34,1.56,.64,1); --ease-emphasis:cubic-bezier(.16,1,.3,1);
+    color-scheme: dark;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:var(--font-body); color:var(--text-primary);
+    min-height:100vh; display:flex; align-items:center; justify-content:center; padding:28px 16px;
+    -webkit-font-smoothing:antialiased;
+    /* mesh "aurora" 6D detrás del contenido */
+    background-color:var(--bg);
+    background-image:
+      radial-gradient(42% 48% at 18% 16%, #5A2F94 0%, transparent 60%),
+      radial-gradient(38% 42% at 84% 12%, #64368C 0%, transparent 62%),
+      radial-gradient(46% 52% at 78% 88%, #B3681F 0%, transparent 52%),
+      radial-gradient(52% 56% at 24% 92%, #2B1A4D 0%, transparent 60%);
+  }
+  .stage{width:100%;max-width:760px;position:relative}
+
+  .brandbar{display:flex;align-items:center;gap:12px;justify-content:center;margin-bottom:20px}
+  .isotipo{width:38px;height:38px;display:block;filter:drop-shadow(0 4px 12px rgba(255,214,111,.28))}
+  .isotipo svg{width:100%;height:100%}
+  .brandbar .bt{font-family:var(--font-display);font-weight:700;letter-spacing:.02em;font-size:14px;color:var(--text-primary)}
+  .brandbar .bt span{color:var(--gold-300);font-weight:600}
+
+  /* Liquid glass 2.0 (6D) */
+  .card{
+    position:relative; overflow:hidden; border-radius:var(--radius-lg);
+    background:color-mix(in oklch, var(--surface-raised) 66%, transparent);
+    backdrop-filter:blur(20px) saturate(150%); -webkit-backdrop-filter:blur(20px) saturate(150%);
+    border:1px solid color-mix(in oklch, #fff 18%, transparent);
+    box-shadow:var(--shadow-lg), inset 0 1px 0 hsl(0 0% 100% / .18);
+    padding:40px 38px;
+  }
+  /* franja superior de marca (componente tarjeta 6D) */
+  .card::after{content:"";position:absolute;top:0;left:0;right:0;height:6px;background:var(--grad-brand)}
+
+  .eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-size:11px;font-weight:600;
+    letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--gold-300);
+    background:color-mix(in oklch,var(--gold-300) 12%,transparent);
+    border:1px solid color-mix(in oklch,var(--gold-300) 30%,transparent);padding:7px 13px;border-radius:var(--radius-pill);margin-bottom:20px}
+  .eyebrow .dot{width:7px;height:7px;border-radius:50%;background:var(--gold-300);box-shadow:0 0 0 4px color-mix(in oklch,var(--gold-300) 22%,transparent)}
+
+  h1{font-family:var(--font-display);font-weight:800;font-size:clamp(26px,4.6vw,40px);line-height:1.1;letter-spacing:var(--ls-display);margin-bottom:16px}
+  h1 .hl{background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .lead{color:var(--text-secondary);font-size:17px;line-height:1.6;max-width:56ch}
+  .chips{display:flex;flex-wrap:wrap;gap:10px;margin:26px 0 30px}
+  .chip{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--text-secondary);
+    background:color-mix(in oklch,#fff 5%,transparent);border:1px solid var(--border);padding:9px 13px;border-radius:var(--radius-pill)}
+  .chip svg{width:15px;height:15px;color:var(--gold-300)}
+
+  .btn{appearance:none;border:0;cursor:pointer;font-family:var(--font-display);font-weight:700;font-size:15.5px;
+    padding:15px 26px;border-radius:var(--radius-2xl);display:inline-flex;align-items:center;gap:10px;text-decoration:none;
+    transition:transform var(--dur-fast) var(--ease-spring),box-shadow .25s,filter .2s}
+  /* botón premium 6D = gradiente oro, texto #3A2607 */
+  .btn-primary{color:#3A2607;background:var(--grad-gold);box-shadow:var(--shadow-glow-gold)}
+  .btn-primary:hover{transform:translateY(-2px);filter:brightness(1.04)}
+  /* botón fantasma 6D */
+  .btn-ghost{background:color-mix(in oklch,#fff 6%,transparent);color:var(--text-primary);border:1px solid var(--border-strong);font-weight:600}
+  .btn-ghost:hover{background:color-mix(in oklch,#fff 12%,transparent)}
+  .btn:disabled{opacity:.4;cursor:not-allowed;transform:none;box-shadow:none}
+  .btn-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:6px}
+  .foot{margin-top:18px;font-size:12.5px;color:var(--text-muted)}
+
+  .topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:22px;gap:16px}
+  .qcount{font-family:var(--font-display);font-size:13px;color:var(--text-secondary);font-weight:600;white-space:nowrap}
+  .prog{flex:1;height:8px;background:color-mix(in oklch,#fff 9%,transparent);border-radius:var(--radius-pill);overflow:hidden}
+  .prog i{display:block;height:100%;width:0;border-radius:var(--radius-pill);background:linear-gradient(90deg,var(--violet-500),var(--gold-300));transition:width .5s var(--ease-emphasis)}
+  .catlabel{font-family:var(--font-display);font-size:12px;letter-spacing:var(--ls-eyebrow);text-transform:uppercase;color:var(--gold-300);font-weight:600;margin-bottom:12px}
+  .qtext{font-family:var(--font-display);font-weight:700;font-size:clamp(21px,3.2vw,27px);line-height:1.22;margin-bottom:26px;letter-spacing:-.01em}
+  .opts{display:flex;flex-direction:column;gap:12px}
+  .opt{display:flex;align-items:center;gap:14px;padding:17px 18px;border-radius:var(--radius-md);cursor:pointer;
+    background:color-mix(in oklch,#fff 4%,transparent);border:1.5px solid var(--border);transition:all .16s var(--ease-emphasis);font-size:15.5px;color:var(--text-primary)}
+  .opt:hover{border-color:color-mix(in oklch,var(--gold-300) 55%,transparent);background:color-mix(in oklch,var(--gold-300) 8%,transparent);transform:translateY(-1px)}
+  .opt .tick{width:24px;height:24px;border-radius:50%;border:2px solid var(--border-strong);flex-shrink:0;display:grid;place-items:center;transition:.16s}
+  .opt.sel{border-color:var(--gold-300);background:color-mix(in oklch,var(--gold-300) 15%,transparent)}
+  .opt.sel .tick{background:var(--gold-300);border-color:var(--gold-300)}
+  .opt.sel .tick::after{content:"";width:8px;height:8px;border-radius:50%;background:#3A2607}
+  .nav{display:flex;justify-content:space-between;margin-top:26px;gap:12px}
+
+  .field{margin-bottom:16px}
+  .field label{display:block;font-size:13px;font-weight:600;color:var(--text-secondary);margin-bottom:7px}
+  .field input,.field select{width:100%;padding:14px 15px;border-radius:var(--radius-md);background:color-mix(in oklch,#fff 5%,transparent);
+    border:1.5px solid var(--border);color:var(--text-primary);font-size:15px;font-family:inherit;transition:.15s}
+  .field input:focus,.field select:focus{outline:3px solid var(--focus-ring);outline-offset:1px;border-color:var(--accent);background:color-mix(in oklch,var(--violet-400) 10%,transparent)}
+  .field input::placeholder{color:var(--text-muted)}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  select option{color:#000}
+
+  .ring-wrap{display:flex;gap:30px;align-items:center;flex-wrap:wrap;justify-content:center;margin-bottom:6px}
+  .ring{position:relative;width:190px;height:190px;flex-shrink:0}
+  .ring svg{transform:rotate(-90deg)}
+  .ring .val{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center}
+  .ring .num{font-family:var(--font-display);font-weight:800;font-size:52px;line-height:1;background:var(--grad-gold);-webkit-background-clip:text;background-clip:text;color:transparent}
+  .ring .pct{font-family:var(--font-display);font-size:12px;color:var(--text-muted);margin-top:4px;letter-spacing:var(--ls-eyebrow)}
+  .rlabel{flex:1;min-width:230px}
+  .rlabel .arch{font-family:var(--font-display);font-weight:800;font-size:24px;line-height:1.15;margin-bottom:8px}
+  .rlabel p{color:var(--text-secondary);font-size:14.5px;line-height:1.55}
+  .bars{margin:26px 0 4px}
+  .bar{margin-bottom:15px}
+  .bar .bh{display:flex;justify-content:space-between;font-size:13.5px;margin-bottom:7px;color:var(--text-secondary);font-weight:500}
+  .bar .bh b{color:var(--text-primary);font-weight:600}
+  .track{height:9px;background:color-mix(in oklch,#fff 8%,transparent);border-radius:var(--radius-pill);overflow:hidden}
+  .track i{display:block;height:100%;width:0;border-radius:var(--radius-pill);transition:width 1s var(--ease-emphasis)}
+  .gaps{background:color-mix(in oklch,var(--gold-300) 8%,transparent);border:1px solid color-mix(in oklch,var(--gold-300) 24%,transparent);border-radius:var(--radius-lg);padding:20px 22px;margin:24px 0}
+  .gaps h3{font-family:var(--font-display);font-size:16px;margin-bottom:14px;color:var(--gold-300);display:flex;align-items:center;gap:9px}
+  .gap{display:flex;gap:12px;padding:11px 0;border-top:1px solid var(--border)}
+  .gap:first-of-type{border-top:0}
+  .gap .n{width:26px;height:26px;border-radius:8px;background:var(--grad-brand);display:grid;place-items:center;font-family:var(--font-display);font-weight:700;font-size:13px;flex-shrink:0;color:#fff}
+  .gap .gt b{color:var(--text-primary);font-size:14.5px}
+  .gap .gt p{color:var(--text-secondary);font-size:13.5px;line-height:1.5;margin-top:3px}
+  .cta-box{text-align:center;margin-top:26px;padding-top:26px;border-top:1px solid var(--border)}
+  .cta-box p{color:var(--text-secondary);margin-bottom:16px;font-size:15px}
+
+  .screen{display:none;animation:rise .45s var(--ease-emphasis)}
+  .screen.active{display:block}
+  @keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @media(max-width:560px){.card{padding:28px 22px}.grid2{grid-template-columns:1fr}.ring{width:160px;height:160px}.ring .num{font-size:44px}}
+  @media (prefers-reduced-motion: reduce){*,::before,::after{animation-duration:.01ms!important;transition-duration:.01ms!important}.btn-primary:hover{transform:none}}
+</style>
+</head>
+<body>
+<div class="stage">
+  <div class="brandbar">
+    <span class="isotipo" aria-label="6D">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 841.89 595.28" role="img" aria-label="Isotipo 6D">
+        <defs>
+          <linearGradient id="i6d" x1="265" y1="164" x2="619" y2="428" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#875425"/><stop offset=".47" stop-color="#FFD66F"/><stop offset="1" stop-color="#B3681F"/>
+          </linearGradient>
+        </defs>
+        <path fill="url(#i6d)" d="M570.96,171.14c-31.16-24.22-76.97-36.45-140.02-37.4l-1.45-.02-81.43,118.66,2.14,4.4,2.22-.71c3.52-1.12,10.95-2.99,21.19-3,16.37,0,32.55,4.57,46.77,13.23,29,17.66,46.33,49.82,46.34,86.04,0,8.66-1.02,17.27-3.03,25.59h0c-9.2,37.99-39.3,67.25-80.51,78.27l-19.85,5.31,61.09-.02c73.2-.02,122.72-14.41,155.86-45.31,29.62-27.93,45.27-68.81,45.25-118.22-.01-54.56-19.4-99.6-54.58-126.82ZM424.48,262.51v-45.98s.31,0,.31,0c40.58-.01,64.73,5.28,80.75,17.67,17.07,13.31,25.72,34.77,25.73,63.78,0,22.66-5.16,40.67-15.35,53.53-10.04,12.37-24.37,19.76-46.12,23.71,1.53-7.49,2.31-15.17,2.31-22.89,0-37.57-17.79-71.02-47.63-89.82ZM576.59,412.24c-32.07,29.9-80.42,43.83-152.17,43.85h-23.99c34.36-13.95,59.21-41.11,68.06-75.16,24.39-4.07,40.36-12.14,51.64-26.05,10.98-13.86,16.54-33,16.53-56.9,0-30.76-9.36-53.65-27.81-68.04-12.02-9.31-31.42-18.82-84.06-18.8h-5.72s.01,48.19.01,48.19c-14.04-7.64-29.67-11.66-45.48-11.66-5.85,0-11.69.6-16.96,1.72l75.65-110.24c61.1,1.1,105.39,12.96,135.35,36.25h0c33.83,26.18,52.47,69.71,52.48,122.56.01,47.88-15.05,87.4-43.55,114.28Z"/>
+        <path fill="url(#i6d)" d="M382.45,351.46c0-21.78-16.14-38.2-37.52-38.19-5.45,0-10.7,1.08-15.59,3.22h0c-13.25,5.78-21.48,18.68-21.48,33.68,0,15.6,8.42,29.6,21.43,35.68h0c4.82,2.25,10.09,3.39,15.65,3.39,21.38,0,37.5-16.25,37.5-37.77ZM344.95,383.84c-4.77,0-9.27-.97-13.37-2.88l-1.14,2.44,1.14-2.44c-11.12-5.19-18.31-17.28-18.32-30.79,0-13.01,6.81-23.76,18.24-28.74l-1.08-2.47,1.08,2.47c4.21-1.83,8.72-2.77,13.43-2.77,18.31,0,32.12,14.1,32.12,32.8,0,18.45-13.8,32.37-32.11,32.38Z"/>
+        <path fill="url(#i6d)" d="M221.01,344.05c0-29.17,6.71-58.49,39.54-106.76l70.31-103.58h-6.5s-68.27,100.54-68.27,100.54c-24.3,35.73-40.48,68.08-40.47,109.79,0,33.69,11.54,62.58,33.35,83.56,20.45,19.67,48.55,31.39,81.26,33.89l.41-5.38c-31.45-2.41-58.4-13.61-77.93-32.4-20.73-19.94-31.69-47.49-31.7-79.67Z"/>
+      </svg>
+    </span>
+    <div class="bt">Plan de Carrera Profesional · <span>Test de Empleabilidad</span></div>
+  </div>
+
+  <!-- INTRO -->
+  <section class="screen active" id="s-intro">
+    <div class="card">
+      <span class="eyebrow"><span class="dot"></span> 5 minutos · Gratis · Resultado inmediato</span>
+      <h1>Descubre por qué tu perfil <span class="hl">no está consiguiendo</span> el empleo que quieres</h1>
+      <p class="lead">El problema casi nunca es tu carrera. Es cómo estás mostrando lo que vales. Responde 10 preguntas y obtén tu <b>Puntaje de Empleabilidad</b> con las 3 brechas exactas que te están costando entrevistas — y qué hacer con cada una.</p>
+      <div class="chips">
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 8v4l3 3"/><circle cx="12" cy="12" r="9"/></svg> 5 minutos</div>
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg> Diagnóstico por áreas</div>
+        <div class="chip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg> Plan de acción</div>
+      </div>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="start()">Empezar mi test <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <span class="foot">Certificación Microsoft · Universidad ICEMéxico · 6D</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="screen" id="s-quiz">
+    <div class="card">
+      <div class="topbar">
+        <div class="prog"><i id="prog"></i></div>
+        <div class="qcount" id="qcount">1 / 10</div>
+      </div>
+      <div class="catlabel" id="cat">Área</div>
+      <div class="qtext" id="qtext">Pregunta</div>
+      <div class="opts" id="opts"></div>
+      <div class="nav">
+        <button class="btn btn-ghost" id="back" onclick="prev()">← Atrás</button>
+        <button class="btn btn-primary" id="next" onclick="next()" disabled>Siguiente →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAPTURE -->
+  <section class="screen" id="s-capture">
+    <div class="card">
+      <span class="eyebrow"><span class="dot"></span> Último paso</span>
+      <h1 style="font-size:clamp(23px,3.6vw,32px)">Tu resultado está <span class="hl">listo</span></h1>
+      <p class="lead" style="margin-bottom:24px">Dinos a dónde te enviamos tu diagnóstico completo con tu plan de acción. Sin costo.</p>
+      <form id="leadform" onsubmit="return submitLead(event)">
+        <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;height:0;width:0;opacity:0" aria-hidden="true" />
+        <div class="field"><label>Nombre</label><input required name="nombre" placeholder="Tu nombre" /></div>
+        <div class="grid2">
+          <div class="field"><label>Correo</label><input required type="email" name="email" placeholder="tucorreo@ejemplo.com" /></div>
+          <div class="field"><label>WhatsApp (opcional)</label><input name="tel" placeholder="10 dígitos" /></div>
+        </div>
+        <div class="field"><label>¿Cuál es tu situación?</label>
+          <select name="situacion" required>
+            <option value="">Selecciona…</option>
+            <option>Estudiante / por egresar</option>
+            <option>Recién egresado buscando primer empleo</option>
+            <option>Trabajo pero busco mejor empleo</option>
+            <option>Busco ascenso / aumento en mi empresa</option>
+          </select>
+        </div>
+        <div class="btn-row" style="margin-top:8px">
+          <button class="btn btn-primary" type="submit">Ver mi resultado <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        </div>
+        <p class="foot">🔒 Tu información es confidencial. La usamos solo para enviarte tu diagnóstico y contenido del Plan de Carrera.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- RESULT -->
+  <section class="screen" id="s-result">
+    <div class="card">
+      <span class="eyebrow"><span class="dot"></span> Tu Puntaje de Empleabilidad</span>
+      <div class="ring-wrap">
+        <div class="ring">
+          <svg width="190" height="190" viewBox="0 0 190 190">
+            <circle cx="95" cy="95" r="82" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="15"/>
+            <circle id="ringfg" cx="95" cy="95" r="82" fill="none" stroke="url(#g)" stroke-width="15" stroke-linecap="round" stroke-dasharray="515" stroke-dashoffset="515"/>
+            <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFD66F"/><stop offset=".55" stop-color="#E0A54A"/><stop offset="1" stop-color="#64368C"/></linearGradient></defs>
+          </svg>
+          <div class="val"><div class="num" id="score">0</div><div class="pct">DE 100</div></div>
+        </div>
+        <div class="rlabel">
+          <div class="arch" id="arch">—</div>
+          <p id="archdesc">—</p>
+        </div>
+      </div>
+
+      <div class="bars" id="bars"></div>
+
+      <div class="gaps">
+        <h3>⚡ Tus 3 brechas prioritarias</h3>
+        <div id="gaplist"></div>
+      </div>
+
+      <div class="cta-box">
+        <p><b>Ya sabes QUÉ te falta. El Plan de Carrera te da el CÓMO.</b><br>Agenda tu diagnóstico gratis con un consultor y arma tu plan para cerrar estas brechas.</p>
+        <div class="btn-row" style="justify-content:center">
+          <a class="btn btn-primary" id="ctaBtn" href="#" target="_blank" rel="noopener">Agendar mi diagnóstico gratis <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <button class="btn btn-ghost" onclick="restart()">Repetir test</button>
+        </div>
+        <p class="foot" style="margin-top:16px">Certificación Microsoft · Universidad ICEMéxico · Centro Evaluador CONOCER CE2140-OC063-18</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<script>
+/* ============================================================
+   CONFIGURACIÓN — cambia esto por tus enlaces reales
+   ============================================================ */
+const WA_NUMBER = "529935168287"; // WhatsApp de cierre (API en GHL)
+function ctaUrl(pct, arch){
+  const msg = "Hola, hice el Test de Empleabilidad y salí en " + pct + "/100 (" + arch + "). Quiero agendar mi diagnóstico gratis.";
+  return "https://wa.me/" + WA_NUMBER + "?text=" + encodeURIComponent(msg);
+}
+
+const CATS = {
+  cv:          {label:"CV y presentación"},
+  visibilidad: {label:"Visibilidad (LinkedIn)"},
+  entrevista:  {label:"Entrevista"},
+  competencias:{label:"Competencias 2026"},
+  mentalidad:  {label:"Mentalidad y estrategia"},
+};
+
+const TIPS = {
+  cv:"Reescribe tu CV orientado a resultados: el puesto claro arriba y logros con números, no responsabilidades.",
+  visibilidad:"Optimiza tu LinkedIn con las palabras clave del puesto que quieres para que los reclutadores te encuentren.",
+  entrevista:"Prepara y practica 3 respuestas clave con la fórmula presente → un logro del pasado → por qué este puesto.",
+  competencias:"Desarrolla IA aplicada al trabajo y Excel de análisis: son las competencias que más te separan en 2026.",
+  mentalidad:"Aplica aunque cumplas ~60% del perfil y traza un plan de crecimiento con pasos y fechas.",
+};
+
+const QUESTIONS = [
+  {cat:"cv", q:"Cuando un reclutador abre tu CV, ¿qué ve primero?", o:[
+    {t:"El puesto que busco, claro y hasta arriba", v:3},
+    {t:"Mi nombre y un resumen general", v:2},
+    {t:"Un objetivo tipo “busco una oportunidad”", v:1},
+    {t:"No tengo un CV actualizado", v:0}]},
+  {cat:"cv", q:"Tus logros en el CV están escritos como…", o:[
+    {t:"Resultados con números (ej. “+20% en ventas”)", v:3},
+    {t:"Algunos con números, otros no", v:2},
+    {t:"Responsabilidades (“encargado de…”)", v:1},
+    {t:"No estoy seguro / no los incluyo", v:0}]},
+  {cat:"visibilidad", q:"¿Cómo está tu perfil de LinkedIn?", o:[
+    {t:"Optimizado con palabras clave y logros", v:3},
+    {t:"Completo pero básico", v:2},
+    {t:"Desactualizado", v:1},
+    {t:"No tengo o no lo uso", v:0}]},
+  {cat:"visibilidad", q:"¿Un reclutador podría encontrarte para el puesto que quieres?", o:[
+    {t:"Sí, aparezco en sus búsquedas", v:3},
+    {t:"Tal vez, no estoy seguro", v:2},
+    {t:"Difícil, no estoy optimizado", v:1},
+    {t:"No sé cómo funciona eso", v:0}]},
+  {cat:"entrevista", q:"Ante “Háblame de ti”, tú…", o:[
+    {t:"Tengo una respuesta estructurada y practicada", v:3},
+    {t:"Improviso pero me defiendo", v:2},
+    {t:"Me pongo nervioso y me enredo", v:1},
+    {t:"No sé bien qué decir", v:0}]},
+  {cat:"entrevista", q:"¿Cómo preparas tus entrevistas?", o:[
+    {t:"Investigo la empresa y practico respuestas", v:3},
+    {t:"Reviso algo rápido antes", v:2},
+    {t:"Llego y veo qué pasa", v:1},
+    {t:"No he tenido entrevistas recientes", v:0}]},
+  {cat:"competencias", q:"¿Usas inteligencia artificial para tu trabajo o búsqueda?", o:[
+    {t:"A diario, para producir mucho más rápido", v:3},
+    {t:"La he probado algunas veces", v:2},
+    {t:"Casi no la uso", v:1},
+    {t:"No sé cómo usarla", v:0}]},
+  {cat:"competencias", q:"Tu nivel de Excel es…", o:[
+    {t:"Análisis (fórmulas, tablas dinámicas)", v:3},
+    {t:"Intermedio", v:2},
+    {t:"Básico", v:1},
+    {t:"Prácticamente nulo", v:0}]},
+  {cat:"mentalidad", q:"Cuando no cumples el 100% de los requisitos de una vacante…", o:[
+    {t:"Aplico igual si cumplo alrededor del 60%", v:3},
+    {t:"Lo pienso mucho antes de aplicar", v:2},
+    {t:"Casi nunca aplico", v:1},
+    {t:"No aplico, mejor no", v:0}]},
+  {cat:"mentalidad", q:"Tu plan de crecimiento profesional es…", o:[
+    {t:"Claro, con pasos y fechas", v:3},
+    {t:"Una idea general en mi cabeza", v:2},
+    {t:"Bastante vago", v:1},
+    {t:"No tengo uno", v:0}]},
+];
+
+const ARCH = [
+  {min:80, name:"Candidato de Alto Impacto", d:"Tu perfil ya compite fuerte. Con ajustes finos y las competencias correctas, puedes apuntar a mejores puestos y sueldos."},
+  {min:60, name:"Perfil Competitivo con Ajustes", d:"Tienes buena base, pero hay fugas que te están costando entrevistas. Cerrando 2-3 brechas subes de nivel rápido."},
+  {min:40, name:"Perfil con Potencial Sin Explotar", d:"Tienes con qué, pero no lo estás mostrando bien. El problema es de método, no de talento — y eso se arregla."},
+  {min:0,  name:"Perfil Invisible (a punto de despegar)", d:"Hoy pasas desapercibido para los reclutadores. La buena noticia: estás a unos cambios concretos de cambiar eso por completo."},
+];
+
+let idx=0; const answers=new Array(QUESTIONS.length).fill(null);
+
+function show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});}
+function start(){idx=0;render();show('s-quiz');}
+function restart(){for(let i=0;i<answers.length;i++)answers[i]=null;idx=0;document.getElementById('leadform').reset();render();show('s-intro');}
+
+function render(){
+  const q=QUESTIONS[idx];
+  document.getElementById('cat').textContent=CATS[q.cat].label;
+  document.getElementById('qtext').textContent=q.q;
+  document.getElementById('qcount').textContent=(idx+1)+' / '+QUESTIONS.length;
+  document.getElementById('prog').style.width=((idx)/QUESTIONS.length*100)+'%';
+  const box=document.getElementById('opts');box.innerHTML='';
+  q.o.forEach((op,i)=>{
+    const d=document.createElement('div');
+    d.className='opt'+(answers[idx]===i?' sel':'');
+    d.innerHTML='<div class="tick"></div><div>'+op.t+'</div>';
+    d.onclick=()=>{answers[idx]=i;render();};
+    box.appendChild(d);
+  });
+  document.getElementById('back').style.visibility=idx===0?'hidden':'visible';
+  document.getElementById('next').disabled=answers[idx]===null;
+  document.getElementById('next').textContent=idx===QUESTIONS.length-1?'Ver resultado →':'Siguiente →';
+}
+function next(){
+  if(answers[idx]===null)return;
+  if(idx<QUESTIONS.length-1){idx++;render();}
+  else{document.getElementById('prog').style.width='100%';show('s-capture');}
+}
+function prev(){if(idx>0){idx--;render();}}
+
+function compute(){
+  const cat={}; for(const k in CATS)cat[k]={s:0,m:0};
+  let s=0,m=0;
+  QUESTIONS.forEach((q,i)=>{const v=q.o[answers[i]].v;cat[q.cat].s+=v;cat[q.cat].m+=3;s+=v;m+=3;});
+  return {pct:Math.round(s/m*100),cat};
+}
+
+function submitLead(e){
+  e.preventDefault();
+  const data=Object.fromEntries(new FormData(e.target).entries());
+  const r=compute();
+  const gaps=Object.keys(CATS).map(k=>({k,p:Math.round(r.cat[k].s/r.cat[k].m*100)}))
+    .sort((x,y)=>x.p-y.p).slice(0,3).map(g=>CATS[g.k].label+" "+g.p+"%");
+  // El resultado se muestra pase lo que pase; el guardado corre en paralelo.
+  fetch('/api/test-lead',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({name:data.nombre,email:data.email,phone:data.tel||'',
+      situacion:data.situacion,score:r.pct,gaps:gaps,website:data.website||undefined})})
+    .catch(err=>console.error('No se pudo guardar el lead:',err));
+  if(window.fbq)fbq('track','Lead',{content_name:'Test de Empleabilidad',value:r.pct});
+  renderResult();
+  show('s-result');
+  return false;
+}
+
+function colorFor(p){return p>=67?'linear-gradient(90deg,#1F9D6B,#4FD39C)':p>=34?'linear-gradient(90deg,#B3681F,#E0A54A)':'linear-gradient(90deg,#D6304F,#FF7A8A)';}
+
+function renderResult(){
+  const r=compute();
+  const circ=515, off=circ-(circ*r.pct/100);
+  const ring=document.getElementById('ringfg');
+  requestAnimationFrame(()=>{setTimeout(()=>{ring.style.transition='stroke-dashoffset 1.4s cubic-bezier(.16,1,.3,1)';ring.style.strokeDashoffset=off;},120);});
+  const el=document.getElementById('score');let cur=0;
+  const step=()=>{cur+=Math.max(1,Math.round(r.pct/34));if(cur>=r.pct)cur=r.pct;el.textContent=cur;if(cur<r.pct)requestAnimationFrame(step);};
+  setTimeout(step,180);
+  const a=ARCH.find(x=>r.pct>=x.min);
+  document.getElementById('arch').textContent=a.name;
+  document.getElementById('archdesc').textContent=a.d;
+  const bars=document.getElementById('bars');bars.innerHTML='';
+  const order=Object.keys(CATS).map(k=>({k,p:Math.round(r.cat[k].s/r.cat[k].m*100)}));
+  order.forEach((c,i)=>{
+    const el=document.createElement('div');el.className='bar';
+    el.innerHTML='<div class="bh"><b>'+CATS[c.k].label+'</b><span>'+c.p+'%</span></div><div class="track"><i></i></div>';
+    bars.appendChild(el);
+    setTimeout(()=>{const bar=el.querySelector('i');bar.style.background=colorFor(c.p);bar.style.width=c.p+'%';},250+i*120);
+  });
+  const gaps=[...order].sort((x,y)=>x.p-y.p).slice(0,3);
+  const gl=document.getElementById('gaplist');gl.innerHTML='';
+  gaps.forEach((g,i)=>{
+    const d=document.createElement('div');d.className='gap';
+    d.innerHTML='<div class="n">'+(i+1)+'</div><div class="gt"><b>'+CATS[g.k].label+' — '+g.p+'%</b><p>'+TIPS[g.k]+'</p></div>';
+    gl.appendChild(d);
+  });
+  document.getElementById('ctaBtn').href=ctaUrl(r.pct, a.name);
+}
+</script>
+</body>
+</html>
