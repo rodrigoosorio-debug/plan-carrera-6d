@@ -11,10 +11,11 @@ import { mkdir, writeFile } from "node:fs/promises";
 
 const BASE = process.env.BASE_URL ?? "http://localhost:3000";
 const OUT = "public/ads";
-const ESTATICOS = ["tof-03", "tof-09", "mof-06"];
+const ESTATICOS = ["tof-03", "tof-09", "mof-06", "bof-03", "bof-05"];
 const CARRUSELES = [
   ...[1, 2, 3, 4].map((n) => `tof-05-t${n}`),
   ...[1, 2, 3, 4, 5].map((n) => `mof-02-t${n}`),
+  ...[1, 2, 3, 4, 5].map((n) => `bof-01-t${n}`),
 ];
 
 await mkdir(OUT, { recursive: true });

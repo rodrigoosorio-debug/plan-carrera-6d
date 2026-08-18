@@ -414,6 +414,172 @@ const AD_BODIES: Record<string, React.ReactElement> = {
     "$8 al día",
   ),
 
+  // BOF-03 · Urgencia honesta — la fecha real del bono
+  "bof-03": (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          color: CREAM,
+          fontSize: 74,
+          fontWeight: 800,
+          lineHeight: 1.1,
+          letterSpacing: "-2px",
+        }}
+      >
+        <span>El bono de primera</span>
+        <span>generación cierra el</span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: 24,
+          color: GOLD,
+          fontSize: 112,
+          fontWeight: 800,
+          letterSpacing: "-3px",
+        }}
+      >
+        4 de septiembre
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          marginTop: 52,
+          gap: 22,
+          color: CREAM,
+          fontSize: 38,
+          fontWeight: 700,
+        }}
+      >
+        <span>· Sesión de arranque en vivo</span>
+        <span>· Taller extra que no se repetirá</span>
+        <span>· Evaluación EC0217.01 incluida en Profesional</span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: 48,
+          color: AQUA,
+          fontSize: 36,
+          fontWeight: 700,
+        }}
+      >
+        Después de esa fecha, estas condiciones no vuelven.
+      </div>
+    </div>
+  ),
+
+  // BOF-05 · El recordatorio directo — retargeting de carrito/página
+  "bof-05": (
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          color: GOLD,
+          fontSize: 100,
+          fontWeight: 800,
+          lineHeight: 1.08,
+          letterSpacing: "-2px",
+        }}
+      >
+        <span>Hiciste la cuenta.</span>
+        <span>$2.70 al día.</span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: 48,
+          color: CREAM,
+          fontSize: 120,
+          fontWeight: 800,
+          letterSpacing: "-3px",
+        }}
+      >
+        ¿Entonces?
+      </div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: 56,
+          color: AQUA,
+          fontSize: 40,
+          fontWeight: 700,
+        }}
+      >
+        Estabas a un clic. Sigues a un clic.
+      </div>
+    </div>
+  ),
+
+  // ── BOF-01 · Carrusel "La escalera de precios" (5 tarjetas) ──
+
+  "bof-01-t1": carouselCard(
+    "1/5",
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          color: GOLD,
+          fontSize: 88,
+          fontWeight: 800,
+          lineHeight: 1.1,
+          letterSpacing: "-2px",
+        }}
+      >
+        <span>Elige tu nivel.</span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          marginTop: 44,
+          color: CREAM,
+          fontSize: 50,
+          fontWeight: 700,
+          lineHeight: 1.25,
+        }}
+      >
+        <span>Todos son individuales</span>
+        <span>(un acceso = una persona)</span>
+        <span>con 12 meses de acceso.</span>
+      </div>
+    </div>,
+  ),
+
+  "bof-01-t2": ladderCard(
+    "2/5",
+    "CORPORATIVO",
+    "$9,997",
+    "$833/mes",
+    "Microsoft + CONOCER + Cambridge, y un año de Open English",
+  ),
+  "bof-01-t3": ladderCard(
+    "3/5",
+    "EJECUTIVO",
+    "$5,997",
+    "$500/mes",
+    "Certificaciones Microsoft y CONOCER incluidas",
+  ),
+  "bof-01-t4": ladderCard(
+    "4/5",
+    "PROFESIONAL",
+    "$2,997",
+    "$250/mes",
+    "Constancias + 200 horas de Excel + coaching semanal",
+  ),
+  "bof-01-t5": ladderCard(
+    "5/5",
+    "ESENCIAL",
+    "$997",
+    "$83/mes",
+    "$2.70 al día. Empieza hoy.",
+  ),
+
   "mof-02-t5": (
     <div style={{ display: "flex", flexDirection: "column", flexGrow: 1 }}>
       {cardBadge("5/5")}
@@ -526,6 +692,58 @@ function priceRows(
         </span>
       </div>
     </div>
+  );
+}
+
+/** Tarjeta de la escalera BOF-01: precio + qué certificaciones incluye. */
+function ladderCard(
+  step: string,
+  level: string,
+  price: string,
+  monthly: string,
+  includes: string,
+) {
+  return carouselCard(
+    step,
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <span
+        style={{
+          color: MUTED,
+          fontSize: 40,
+          letterSpacing: 6,
+          fontWeight: 700,
+        }}
+      >
+        {level}
+      </span>
+      <div style={{ display: "flex", alignItems: "baseline", gap: 26 }}>
+        <span
+          style={{
+            color: GOLD,
+            fontSize: 140,
+            fontWeight: 800,
+            letterSpacing: "-4px",
+          }}
+        >
+          {price}
+        </span>
+        <span style={{ color: CREAM, fontSize: 56, fontWeight: 800 }}>
+          → {monthly}
+        </span>
+      </div>
+      <div
+        style={{
+          display: "flex",
+          marginTop: 36,
+          color: AQUA,
+          fontSize: 44,
+          fontWeight: 700,
+          lineHeight: 1.3,
+        }}
+      >
+        {includes}
+      </div>
+    </div>,
   );
 }
 
