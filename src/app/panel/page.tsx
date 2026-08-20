@@ -32,7 +32,8 @@ const BUYER_TAGS: Record<string, string> = {
 
 interface GhlStats {
   ok: boolean;
-  totalContactos: number;
+  /** Contactos con al menos una etiqueta del funnel — el CRM completo no cuenta. */
+  leadsUnicos: number;
   leads: Record<string, number>;
   compras: Record<string, number>;
   ingresos: number;
@@ -43,7 +44,7 @@ async function fetchGhlStats(): Promise<GhlStats> {
   const locationId = process.env.GHL_LOCATION_ID;
   const empty: GhlStats = {
     ok: false,
-    totalContactos: 0,
+    leadsUnicos: 0,
     leads: {},
     compras: {},
     ingresos: 0,
@@ -51,7 +52,7 @@ async function fetchGhlStats(): Promise<GhlStats> {
   if (!token || !locationId) return empty;
 
   const tagCount: Record<string, number> = {};
-  let total = 0;
+  let leadsUnicos = 0;
   let startAfter = "";
   let startAfterId = "";
 
@@ -78,9 +79,10 @@ async function fetchGhlStats(): Promise<GhlStats> {
         meta?: { startAfter?: number; startAfterId?: string };
       };
       const contacts = body.contacts ?? [];
-      total += contacts.length;
       for (const c of contacts) {
-        for (const t of c.tags ?? []) {
+        const tags = c.tags ?? [];
+        if (tags.some((t) => t in LEAD_TAGS)) leadsUnicos += 1;
+        for (const t of tags) {
           tagCount[t] = (tagCount[t] ?? 0) + 1;
         }
       }
@@ -104,7 +106,77 @@ async function fetchGhlStats(): Promise<GhlStats> {
     if (plan) ingresos += n * plan.price;
   }
 
-  return { ok: true, totalContactos: total, leads, compras, ingresos };
+  return { ok: true, leadsUnicos, leads, compras, ingresos };
+}
+
+interface PipelineStats {
+  ok: boolean;
+  faltaPermiso: boolean;
+  etapas: Array<{ nombre: string; abiertas: number }>;
+}
+
+/**
+ * Etapas del pipeline de cierre (oportunidades abiertas por etapa).
+ * Requiere que la integración privada tenga el scope opportunities.readonly —
+ * si no lo tiene, la sección explica cómo activarlo en vez de fallar.
+ */
+async function fetchPipeline(): Promise<PipelineStats> {
+  const token = process.env.GHL_API_TOKEN;
+  const locationId = process.env.GHL_LOCATION_ID;
+  const empty: PipelineStats = { ok: false, faltaPermiso: false, etapas: [] };
+  if (!token || !locationId) return empty;
+
+  const headers = {
+    Authorization: `Bearer ${token}`,
+    Version: "2021-07-28",
+    Accept: "application/json",
+  };
+
+  try {
+    const pipesRes = await fetch(
+      `https://services.leadconnectorhq.com/opportunities/pipelines?locationId=${locationId}`,
+      { headers, cache: "no-store" },
+    );
+    if (pipesRes.status === 401 || pipesRes.status === 403) {
+      return { ok: false, faltaPermiso: true, etapas: [] };
+    }
+    if (!pipesRes.ok) return empty;
+
+    const pipes = (await pipesRes.json()) as {
+      pipelines?: Array<{
+        id: string;
+        name: string;
+        stages?: Array<{ id: string; name: string }>;
+      }>;
+    };
+    const pipeline = pipes.pipelines?.[0];
+    if (!pipeline) return empty;
+
+    const count = new Map<string, number>();
+    const oppsRes = await fetch(
+      `https://services.leadconnectorhq.com/opportunities/search?location_id=${locationId}&pipeline_id=${pipeline.id}&status=open&limit=100`,
+      { headers, cache: "no-store" },
+    );
+    if (!oppsRes.ok) return empty;
+    const opps = (await oppsRes.json()) as {
+      opportunities?: Array<{ pipelineStageId?: string }>;
+    };
+    for (const o of opps.opportunities ?? []) {
+      const key = o.pipelineStageId ?? "";
+      count.set(key, (count.get(key) ?? 0) + 1);
+    }
+
+    return {
+      ok: true,
+      faltaPermiso: false,
+      etapas: (pipeline.stages ?? []).map((st) => ({
+        nombre: st.name,
+        abiertas: count.get(st.id) ?? 0,
+      })),
+    };
+  } catch {
+    return empty;
+  }
 }
 
 /** Semáforo simple: cada métrica sabe cuándo está bien, regular o mal. */
@@ -192,7 +264,7 @@ export default async function Panel({
   const { clave } = await searchParams;
   if (!key || clave !== key) notFound();
 
-  const ghl = await fetchGhlStats();
+  const [ghl, pipeline] = await Promise.all([fetchGhlStats(), fetchPipeline()]);
   const meta = META_SNAPSHOT;
 
   const gastoTotal = meta.campanas.reduce((s, c) => s + c.gasto, 0);
@@ -272,8 +344,9 @@ export default async function Panel({
                 status={light(costoLead, 150, 300, false)}
               />
               <Tile
-                label="Contactos totales"
-                value={String(ghl.totalContactos)}
+                label="Leads de campaña"
+                value={String(ghl.leadsUnicos)}
+                hint="contactos únicos con etiqueta del funnel"
               />
               <Tile
                 label="Compras Esencial"
@@ -290,6 +363,27 @@ export default async function Panel({
             <p className="rounded-xl border border-amber-400/30 bg-amber-400/10 p-4 text-sm">
               No se pudo leer GHL (revisa GHL_API_TOKEN / GHL_LOCATION_ID en
               Vercel).
+            </p>
+          )}
+        </Section>
+
+        <Section title="Pipeline de cierre (oportunidades abiertas)">
+          {pipeline.ok ? (
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {pipeline.etapas.map((e) => (
+                <Tile key={e.nombre} label={e.nombre} value={String(e.abiertas)} />
+              ))}
+            </div>
+          ) : pipeline.faltaPermiso ? (
+            <p className="rounded-xl border border-white/10 bg-white/[0.04] p-4 text-sm text-white/60">
+              Para ver el pipeline aquí, agrega el permiso{" "}
+              <code className="text-[#2ED9D0]">opportunities.readonly</code> a la
+              integración privada en GHL (Configuración → Integraciones privadas →
+              editar → scopes) y recarga esta página.
+            </p>
+          ) : (
+            <p className="rounded-xl border border-white/10 bg-white/[0.04] p-4 text-sm text-white/60">
+              No se pudo leer el pipeline en este momento.
             </p>
           )}
         </Section>
