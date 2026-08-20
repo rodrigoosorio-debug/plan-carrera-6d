@@ -149,7 +149,11 @@ async function fetchPipeline(): Promise<PipelineStats> {
         stages?: Array<{ id: string; name: string }>;
       }>;
     };
-    const pipeline = pipes.pipelines?.[0];
+    // El subaccount tiene ~10 pipelines de otras campañas; este panel es del
+    // de la campaña PCP, fijado por id (con el nombre como respaldo).
+    const pipeline =
+      pipes.pipelines?.find((pl) => pl.id === "sp7H1Y0GWdIlTnASHS26") ??
+      pipes.pipelines?.find((pl) => pl.name.includes("PCP"));
     if (!pipeline) return empty;
 
     const count = new Map<string, number>();
