@@ -12,6 +12,7 @@ import { Authority } from "./components/authority";
 import { CtaFinal } from "./components/cta-final";
 import { Hero } from "./components/hero";
 import { Stagnation } from "./components/stagnation";
+import { TestCta } from "./components/test-cta";
 import { TheMath } from "./components/the-math";
 import { WhatYouGet } from "./components/what-you-get";
 import { WhyNotPromoted } from "./components/why-not-promoted";
@@ -34,6 +35,7 @@ export function LandingPro({ baseUrl }: { baseUrl: string }) {
       <main>
         <Hero />
         <Stagnation />
+        <TestCta />
         <WhyNotPromoted />
         <TheMath />
         <HowItWorks />
