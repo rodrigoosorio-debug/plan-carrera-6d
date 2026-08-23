@@ -30,7 +30,7 @@ export const META_SNAPSHOT: {
   nota: string;
   campanas: CampaignSnapshot[];
 } = {
-  actualizado: "2026-08-20T19:30:00-06:00",
+  actualizado: "2026-08-23T12:20:00-06:00",
   nota: "Acumulado al 23-ago: 2 InitiateCheckout ($3,994 en carritos), 3 Contact a WhatsApp, 965 video views, 130 visitas a landing. Colección TOF completa: 18 anuncios.",
   campanas: [
     {
