@@ -81,6 +81,8 @@ async function fetchGhlStats(): Promise<GhlStats> {
       const contacts = body.contacts ?? [];
       for (const c of contacts) {
         const tags = c.tags ?? [];
+        // Pruebas del equipo llevan esta etiqueta — no son leads.
+        if (tags.includes("interno-prueba")) continue;
         if (tags.some((t) => t in LEAD_TAGS)) leadsUnicos += 1;
         for (const t of tags) {
           tagCount[t] = (tagCount[t] ?? 0) + 1;
@@ -184,9 +186,21 @@ async function fetchPipeline(): Promise<PipelineStats> {
 }
 
 const META_CAMPAIGNS = [
-  { id: "120250682402250126", nombre: "C1 · TOF Prospección", presupuestoDiario: 300 },
-  { id: "120250682428340126", nombre: "C2 · MOF Retargeting tibio", presupuestoDiario: 125 },
-  { id: "120250682420560126", nombre: "C3 · BOF Cierre", presupuestoDiario: 75 },
+  {
+    id: "120250682402250126",
+    nombre: "C1 · TOF Prospección",
+    presupuestoDiario: 300,
+  },
+  {
+    id: "120250682428340126",
+    nombre: "C2 · MOF Retargeting tibio",
+    presupuestoDiario: 125,
+  },
+  {
+    id: "120250682420560126",
+    nombre: "C3 · BOF Cierre",
+    presupuestoDiario: 75,
+  },
 ];
 
 interface MetaAction {
@@ -472,15 +486,19 @@ export default async function Panel({
           {pipeline.ok ? (
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
               {pipeline.etapas.map((e) => (
-                <Tile key={e.nombre} label={e.nombre} value={String(e.abiertas)} />
+                <Tile
+                  key={e.nombre}
+                  label={e.nombre}
+                  value={String(e.abiertas)}
+                />
               ))}
             </div>
           ) : pipeline.faltaPermiso ? (
             <p className="rounded-xl border border-white/10 bg-white/[0.04] p-4 text-sm text-white/60">
               Para ver el pipeline aquí, agrega el permiso{" "}
-              <code className="text-[#2ED9D0]">opportunities.readonly</code> a la
-              integración privada en GHL (Configuración → Integraciones privadas →
-              editar → scopes) y recarga esta página.
+              <code className="text-[#2ED9D0]">opportunities.readonly</code> a
+              la integración privada en GHL (Configuración → Integraciones
+              privadas → editar → scopes) y recarga esta página.
             </p>
           ) : (
             <p className="rounded-xl border border-white/10 bg-white/[0.04] p-4 text-sm text-white/60">
