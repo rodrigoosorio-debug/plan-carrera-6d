@@ -31,19 +31,19 @@ export const META_SNAPSHOT: {
   campanas: CampaignSnapshot[];
 } = {
   actualizado: "2026-08-20T19:30:00-06:00",
-  nota: "Día 2 de C1 a ritmo completo: hoy $190, CTR 7.2%, 300 video views, y los PRIMEROS InitiateCheckout ($997) y Contact — el fondo del embudo despertando. 4 reels TOF en campaña.",
+  nota: "Acumulado al 23-ago: 2 InitiateCheckout ($3,994 en carritos), 3 Contact a WhatsApp, 965 video views, 130 visitas a landing. Colección TOF completa: 18 anuncios.",
   campanas: [
     {
       nombre: "C1 · TOF Prospección",
       estado: "activa",
       presupuestoDiario: 300,
-      gasto: 242.34,
-      impresiones: 9084,
-      alcance: 8717,
-      clics: 152,
-      ctr: 1.67,
-      cpm: 26.68,
-      cpc: 1.59,
+      gasto: 1029.98,
+      impresiones: 11058,
+      alcance: 9710,
+      clics: 269,
+      ctr: 2.43,
+      cpm: 93.14,
+      cpc: 3.83,
       hookRate: null,
       compras: 0,
       ingresosAtribuidos: 0,

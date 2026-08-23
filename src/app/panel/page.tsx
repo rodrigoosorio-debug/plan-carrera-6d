@@ -183,6 +183,94 @@ async function fetchPipeline(): Promise<PipelineStats> {
   }
 }
 
+const META_CAMPAIGNS = [
+  { id: "120250682402250126", nombre: "C1 · TOF Prospección", presupuestoDiario: 300 },
+  { id: "120250682428340126", nombre: "C2 · MOF Retargeting tibio", presupuestoDiario: 125 },
+  { id: "120250682420560126", nombre: "C3 · BOF Cierre", presupuestoDiario: 75 },
+];
+
+interface MetaAction {
+  action_type?: string;
+  value?: string;
+}
+
+interface MetaInsightRow {
+  spend?: string;
+  impressions?: string;
+  clicks?: string;
+  ctr?: string;
+  cpm?: string;
+  cpc?: string;
+  reach?: string;
+  actions?: MetaAction[];
+  action_values?: MetaAction[];
+}
+
+import type { CampaignSnapshot } from "@/shared/data/kpis-meta";
+
+/**
+ * Métricas de Meta en vivo, directo de la Graph API.
+ * Requiere META_INSIGHTS_TOKEN en Vercel (token de usuario del sistema con
+ * permiso ads_read). Sin él devuelve null y el panel usa la foto de respaldo.
+ */
+async function fetchMetaLive(): Promise<CampaignSnapshot[] | null> {
+  const token = process.env.META_INSIGHTS_TOKEN;
+  if (!token) return null;
+
+  const num = (v: string | undefined) => (v === undefined ? 0 : Number(v));
+  const opt = (v: string | undefined) => (v === undefined ? null : Number(v));
+  const act = (list: MetaAction[] | undefined, types: string[]) => {
+    for (const t of types) {
+      const hit = list?.find((a) => a.action_type === t);
+      if (hit?.value) return Number(hit.value);
+    }
+    return 0;
+  };
+
+  try {
+    const out: CampaignSnapshot[] = [];
+    for (const c of META_CAMPAIGNS) {
+      const base = `https://graph.facebook.com/v25.0/${c.id}`;
+      const [infoRes, insRes] = await Promise.all([
+        fetch(`${base}?fields=status&access_token=${token}`, {
+          cache: "no-store",
+        }),
+        fetch(
+          `${base}/insights?fields=spend,impressions,clicks,ctr,cpm,cpc,reach,actions,action_values&date_preset=maximum&access_token=${token}`,
+          { cache: "no-store" },
+        ),
+      ]);
+      if (!infoRes.ok || !insRes.ok) return null;
+      const info = (await infoRes.json()) as { status?: string };
+      const ins = (await insRes.json()) as { data?: MetaInsightRow[] };
+      const row = ins.data?.[0];
+      const compraTipos = [
+        "omni_purchase",
+        "purchase",
+        "offsite_conversion.fb_pixel_purchase",
+      ];
+      out.push({
+        nombre: c.nombre,
+        estado: info.status === "ACTIVE" ? "activa" : "pausada",
+        presupuestoDiario: c.presupuestoDiario,
+        gasto: num(row?.spend),
+        impresiones: num(row?.impressions),
+        alcance: num(row?.reach),
+        clics: num(row?.clicks),
+        ctr: opt(row?.ctr),
+        cpm: opt(row?.cpm),
+        cpc: opt(row?.cpc),
+        hookRate: null,
+        compras: act(row?.actions, compraTipos),
+        ingresosAtribuidos: act(row?.action_values, compraTipos),
+      });
+    }
+    return out;
+  } catch {
+    return null;
+  }
+}
+
 /** Semáforo simple: cada métrica sabe cuándo está bien, regular o mal. */
 function light(
   value: number | null,
@@ -268,8 +356,14 @@ export default async function Panel({
   const { clave } = await searchParams;
   if (!key || clave !== key) notFound();
 
-  const [ghl, pipeline] = await Promise.all([fetchGhlStats(), fetchPipeline()]);
-  const meta = META_SNAPSHOT;
+  const [ghl, pipeline, metaVivo] = await Promise.all([
+    fetchGhlStats(),
+    fetchPipeline(),
+    fetchMetaLive(),
+  ]);
+  const meta = metaVivo
+    ? { actualizado: "", nota: "", campanas: metaVivo }
+    : META_SNAPSHOT;
 
   const gastoTotal = meta.campanas.reduce((s, c) => s + c.gasto, 0);
   const comprasMeta = meta.campanas.reduce((s, c) => s + c.compras, 0);
@@ -295,13 +389,16 @@ export default async function Panel({
           Panel de control de campaña
         </h1>
         <p className="mt-2 text-sm text-white/50">
-          GHL en vivo al cargar esta página · Meta: foto del{" "}
-          {new Date(meta.actualizado).toLocaleString("es-MX", {
-            dateStyle: "medium",
-            timeStyle: "short",
-          })}{" "}
-          — pídele a Claude &ldquo;actualiza el panel&rdquo; para refrescarla.
-          {meta.nota ? ` · ${meta.nota}` : ""}
+          {metaVivo
+            ? "GHL y Meta consultados en vivo en cada carga de esta página."
+            : `GHL en vivo al cargar esta página · Meta: foto del ${new Date(
+                META_SNAPSHOT.actualizado,
+              ).toLocaleString("es-MX", {
+                dateStyle: "medium",
+                timeStyle: "short",
+              })} — pídele a Claude "actualiza el panel" para refrescarla.${
+                META_SNAPSHOT.nota ? ` · ${META_SNAPSHOT.nota}` : ""
+              }`}
         </p>
 
         <Section title="El negocio (lo único que importa al final)">
