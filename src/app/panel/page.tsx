@@ -579,19 +579,20 @@ export default async function Panel({
         <Section title="Las reglas de lectura (para no reaccionar de más)">
           <ul className="space-y-2 text-sm leading-relaxed text-white/60">
             <li>
-              · Días 1–5: fase de aprendizaje — no tocar nada, los costos altos
-              son normales.
+              · Fase actual (desde 26 ago): C1 y C2 activas — costo por lead y
+              CAC ya se juzgan; ventas se esperan del remarketing de C2.
             </li>
             <li>
-              · Día 7 (26 ago): primera lectura seria — hook rate ≥25% y CTR
-              ≥1%. Ventas aún NO se juzgan.
+              · En C2 vigilar la frecuencia: arriba de 4–5 por semana la
+              audiencia tibia se quema — bajar presupuesto o ampliar públicos.
             </li>
             <li>
-              · Semana 2–3: costo por lead y CAC empiezan a significar algo.
+              · Leads del test/calculadora caen SOLOS al pipeline — si el
+              pipeline no crece con los leads, revisar workflows en GHL.
             </li>
             <li>
-              · C2 se enciende al juntar ~1,000 tibios · C3 con tráfico
-              constante en la landing.
+              · C3 (BOF) se enciende con tráfico constante en la landing y
+              carritos que perseguir.
             </li>
             <li>
               · Una campaña solo se apaga con ROAS &lt;1.5× sostenido DOS
