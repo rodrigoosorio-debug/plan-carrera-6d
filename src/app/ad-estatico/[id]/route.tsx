@@ -441,7 +441,7 @@ const AD_BODIES: Record<string, React.ReactElement> = {
           letterSpacing: "-3px",
         }}
       >
-        4 de septiembre
+        19 de septiembre
       </div>
       <div
         style={{

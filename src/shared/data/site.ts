@@ -37,12 +37,12 @@ export const site = {
   email: "contacto@centroevaluador6d.com" as string | null,
 
   /**
-   * Fecha límite del bono de primera generación.
-   * ⚠️ El 5 de septiembre este bono DEBE quitarse (bonusItems: []) o cambiarse
+   * Fecha límite del bono de primera generación (extendida 15 días el 3-sep).
+   * ⚠️ El 20 de septiembre este bono DEBE quitarse (bonusItems: []) o cambiarse
    * por uno nuevo con fecha real. Una urgencia vencida a la vista destruye la
    * credibilidad de todo lo demás.
    */
-  bonusDeadline: "4 de septiembre" as string | null,
+  bonusDeadline: "19 de septiembre" as string | null,
 
   /**
    * Bono de primera generación, decidido el 14 de agosto de 2026.
