@@ -414,6 +414,12 @@ export default async function Panel({
                 META_SNAPSHOT.nota ? ` · ${META_SNAPSHOT.nota}` : ""
               }`}
         </p>
+        <a
+          href={`/panel/semanal?clave=${encodeURIComponent(clave ?? "")}`}
+          className="mt-3 inline-block rounded-full border border-[#2ED9D0]/40 px-5 py-1.5 text-sm text-[#2ED9D0] hover:bg-[#2ED9D0]/10"
+        >
+          Reporte semanal de KPIs →
+        </a>
 
         <Section title="El negocio (lo único que importa al final)">
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
